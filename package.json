@@ -1,0 +1,12 @@
+{
+  "name": "@compass-aiden/visualization-website-build",
+  "version": "0.0.1",
+  "description": "可视化建站系统",
+  "scripts": {
+    "postinstall": "rush update && rush update-autoinstaller --name common-commands && rush install",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "@commitlint/config-conventional": "^17.4.4"
+  }
+}
