@@ -1,9 +1,6 @@
 {
-  "extends": ["@compass-aiden/eslint-config/react", "plugin:@next/next/recommended", "plugin:prettier/recommended"],
+  "extends": ["@compass-aiden/eslint-config/next", "plugin:prettier/recommended"],
   "parserOptions": {
-    "project": ["tsconfig.json"]
-  },
-  "rules": {
-    "react/react-in-jsx-scope": "off"
+    "project": ["tsconfig.json", "tsconfig.node.json"]
   }
 }
