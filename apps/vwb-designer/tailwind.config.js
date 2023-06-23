@@ -19,5 +19,9 @@ module.exports = {
   plugins: [
     // Iconify plugin
     addDynamicIconSelectors(),
+    require('@tailwindcss/forms'),
   ],
+  corePlugins: {
+    preflight: false,
+  },
 };

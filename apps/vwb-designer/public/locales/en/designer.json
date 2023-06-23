@@ -1,0 +1,9 @@
+{
+  "actions": {
+    "undo": "撤销",
+    "redo": "重做",
+    "computer": "电脑端",
+    "tablet": "平板",
+    "mobile": "移动端"
+  }
+}

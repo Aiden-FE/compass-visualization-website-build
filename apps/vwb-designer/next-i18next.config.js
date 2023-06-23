@@ -12,6 +12,7 @@ module.exports = {
       },
     ],
   },
+  reloadOnPrerender: process.env.NODE_ENV === 'development',
   fallbackLng: {
     default: ['zh-CN'],
   },

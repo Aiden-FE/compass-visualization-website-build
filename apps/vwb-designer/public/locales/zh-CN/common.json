@@ -1,3 +1,15 @@
 {
-  "displayLanguage": "中文"
+  "displayLanguage": "中文",
+  "emailAddress": "邮箱地址",
+  "signAccountPrompt": "登录您的帐户",
+  "password": "密码",
+  "forgotPassword": "忘记密码",
+  "signIn": "登录",
+  "notMember": "不是会员",
+  "freeTrial": "开始免费试用",
+  "prompts": {
+    "notSupportRecoveryPassword": "很抱歉,暂不支持找回密码",
+    "signInError": "账号或密码错误"
+  },
+  "save": "保存"
 }

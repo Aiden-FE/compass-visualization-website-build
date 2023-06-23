@@ -1,0 +1,12 @@
+@include b(designer-content) {
+  @include m(pc) {
+    min-width: 768px;
+    width: 100%;
+  }
+  @include m(tablet) {
+    width: 768px;
+  }
+  @include m(mobile) {
+    width: 375px;
+  }
+}
