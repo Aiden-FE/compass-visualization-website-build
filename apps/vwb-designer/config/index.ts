@@ -2,6 +2,8 @@ import ThemeConfig from './theme.json';
 
 export const IS_DEV = process.env.NODE_ENV === 'development';
 
+export const IS_CLIENT = typeof window !== 'undefined';
+
 export enum AvailableLanguages {
   ZH_CN = 'zh-CN',
   EN = 'en',

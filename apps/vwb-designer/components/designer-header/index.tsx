@@ -75,7 +75,9 @@ const DesignerHeader: React.FC<IDesignerHeaderProps> = ({ centralScheduler, onSu
             onKeyDown={() => togglePlatform('pc')}
             role="button"
             tabIndex={0}
-            className={`p-1.5 cursor-pointer ${configuration.platform === 'pc' ? 'bg-slate-100' : ''}`}
+            className={`p-1.5 cursor-pointer ${
+              configuration.platform === 'pc' ? 'bg-slate-100 text-[var(--vwb-primary-color)]' : ''
+            }`}
           >
             <span className="icon-[mdi--laptop] text-[24px]" />
           </div>
@@ -86,7 +88,9 @@ const DesignerHeader: React.FC<IDesignerHeaderProps> = ({ centralScheduler, onSu
             onKeyDown={() => togglePlatform('tablet')}
             role="button"
             tabIndex={0}
-            className={`p-1.5 cursor-pointer ${configuration.platform === 'tablet' ? 'bg-slate-100' : ''}`}
+            className={`p-1.5 cursor-pointer ${
+              configuration.platform === 'tablet' ? 'bg-slate-100 text-[var(--vwb-primary-color)]' : ''
+            }`}
           >
             <span className="icon-[ant-design--tablet-outlined] text-[24px]" />
           </div>
@@ -97,14 +101,16 @@ const DesignerHeader: React.FC<IDesignerHeaderProps> = ({ centralScheduler, onSu
             onKeyDown={() => togglePlatform('mobile')}
             role="button"
             tabIndex={0}
-            className={`p-1.5 cursor-pointer ${configuration.platform === 'mobile' ? 'bg-slate-100' : ''}`}
+            className={`p-1.5 cursor-pointer ${
+              configuration.platform === 'mobile' ? 'bg-slate-100 text-[var(--vwb-primary-color)]' : ''
+            }`}
           >
             <span className="icon-[mdi--cellphone] text-[24px]" />
           </div>
         </Tooltip>
       </div>
       <Space>
-        <Button onClick={save} type="primary">
+        <Button onClick={() => save()} type="primary">
           {t('save', { ns: I18nNamespaces.COMMON })}
         </Button>
       </Space>

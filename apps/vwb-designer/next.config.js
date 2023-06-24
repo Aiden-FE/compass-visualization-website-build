@@ -1,4 +1,18 @@
 const { i18n } = require('./next-i18next.config');
+const fs = require('fs');
+const path = require('path');
+
+[
+  {
+    from: path.join(__dirname, 'node_modules/@compass-aiden/vwb-atomic-text/dist/vwb-atomic-text.umd.js'),
+    to: path.join(__dirname, 'public/3rd/vwb-atomic-text.umd.js'),
+  },
+].forEach((item) => {
+  if (!fs.existsSync(path.dirname(item.to))) {
+    fs.mkdirSync(path.dirname(item.to), { recursive: true });
+  }
+  fs.copyFileSync(item.from, item.to);
+});
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {

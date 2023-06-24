@@ -1,3 +1,5 @@
+/// <reference types="systemjs" />
+
 import { NextPage } from 'next';
 import { ComponentType, ReactElement, ReactNode } from 'react';
 

@@ -21,7 +21,7 @@ const DesignerContent: React.FC<IDesignerContentProps> = ({ centralScheduler }) 
   }, [centralScheduler]);
 
   return (
-    <div className={`overflow-auto bg-[#f5f5f5] ${styles[`cp-designer-content_${configuration.platform}`]}`}>
+    <div className={`overflow-auto bg-[#f5f5f5] ${styles[`vwb-designer-content_${configuration.platform}`]}`}>
       DesignerContent
     </div>
   );

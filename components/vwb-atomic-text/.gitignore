@@ -142,36 +142,15 @@ bazel-out
 chrome-profiler-events*.json
 speed-measure-plugin*.json
 
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# Logs
+logs
+lerna-debug.log*
 
-# dependencies
-/node_modules
-/.pnp
-.pnp.js
+node_modules
+dist-ssr
+*.local
 
-# testing
-/coverage
+auto-imports.d.ts
+#components.d.ts
 
-# next.js
-/.next/
-/out/
-
-# production
-/build
-
-# misc
-*.pem
-
-# debug
-
-# local env files
-.env*.local
-
-# vercel
-.vercel
-
-# typescript
-*.tsbuildinfo
-next-env.d.ts
-
-public/3rd
+stats.html

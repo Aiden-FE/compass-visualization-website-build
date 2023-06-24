@@ -338,6 +338,10 @@
     {
       "packageName": "compass-vwb-server",
       "projectFolder": "apps/vwb-server"
+    },
+    {
+      "packageName": "@compass-aiden/vwb-atomic-text",
+      "projectFolder": "components/vwb-atomic-text"
     }
     // {
     //   /**

@@ -1,19 +1,29 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { ThemeConfig } from 'antd';
 
 export interface ThemeState {
+  antdTheme: ThemeConfig;
   theme?: string;
   themeData?: Record<string, string | number> | null;
 }
 
 const themeSlice = createSlice({
   name: 'theme',
-  initialState: {} as ThemeState,
+  initialState: {
+    antdTheme: {
+      token: {
+        colorPrimary: '#00c0c9',
+      },
+    },
+  } as ThemeState,
   reducers: {
-    setTheme(state, action: PayloadAction<ThemeState>) {
+    setTheme(state, action: PayloadAction<Pick<ThemeState, 'theme' | 'themeData'>>) {
       // eslint-disable-next-line no-param-reassign
       state.theme = action.payload.theme;
       // eslint-disable-next-line no-param-reassign
       state.themeData = action.payload.themeData;
+      // eslint-disable-next-line no-param-reassign
+      state.antdTheme.token.colorPrimary = action.payload.themeData?.['--vwb-primary-color'] || '#00c0c9';
     },
   },
 });

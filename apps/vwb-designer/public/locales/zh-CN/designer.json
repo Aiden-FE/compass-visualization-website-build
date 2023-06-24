@@ -5,5 +5,8 @@
     "computer": "电脑端",
     "tablet": "平板",
     "mobile": "移动端"
+  },
+  "prompt": {
+    "noSelectNode": "请先从左侧画布选择节点"
   }
 }

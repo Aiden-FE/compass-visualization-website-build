@@ -28,16 +28,16 @@ const DesignerPage: NextPageWithLayout = () => {
   }, [setCentralScheduler]);
 
   return (
-    <Layout className={pageStyles['cp-page']}>
+    <Layout className={pageStyles['vwb-page']}>
       <Layout.Header className="sticky flex items-center bg-white h-12 leading-none">
         {centralScheduler ? (
           <DesignerHeader centralScheduler={centralScheduler} onSubmit={(config) => onSubmit(config)} />
         ) : null}
       </Layout.Header>
 
-      <Layout.Content className="flex">
+      <Layout.Content className="flex relative">
         <DesignerMaterial />
-        <main className="flex-1 overflow-auto bg-slate-200 flex justify-center">
+        <main className="flex-1 overflow-auto bg-slate-200 flex justify-center p-4">
           {centralScheduler ? <DesignerContent centralScheduler={centralScheduler} /> : null}
         </main>
         <DesignerMaterialSetting />
