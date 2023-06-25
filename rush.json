@@ -340,8 +340,14 @@
       "projectFolder": "apps/vwb-server"
     },
     {
+      "packageName": "@compass-aiden/vwb-core",
+      "projectFolder": "libraries/vwb-core",
+      "versionPolicyName": "vwb-core"
+    },
+    {
       "packageName": "@compass-aiden/vwb-atomic-text",
-      "projectFolder": "components/vwb-atomic-text"
+      "projectFolder": "components/vwb-atomic-text",
+      "versionPolicyName": "plugins"
     }
     // {
     //   /**
