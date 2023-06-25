@@ -5,7 +5,7 @@ interface ILoggerOption {
   prefix?: string;
 }
 
-const stylesMap = {
+const stylesMap: any = {
   debug: 'background-color: #737373;color: #fff;',
   log: 'background-color: #0ea5e9;color: #fff;',
   info: 'background-color: #6366f1;color: #fff;',
@@ -16,11 +16,11 @@ const stylesMap = {
 
 function consoleLog(...args: unknown[]) {
   const data = [...args];
-  const option = data.pop();
+  const option: any = data.pop();
   let consoleCmd: 'log' | 'info' | 'warn' | 'error' | 'debug' = 'log';
   let consoleStyles = '';
   let prefix = 'LOGGER';
-  if (typeof option === 'object' && Object.hasOwn(option, 'consoleType')) {
+  if (option && typeof option === 'object' && Object.hasOwn(option, 'consoleType')) {
     switch (option.consoleType) {
       case 'debug':
         consoleCmd = 'debug';

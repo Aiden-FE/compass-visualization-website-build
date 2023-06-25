@@ -29,4 +29,11 @@ const AppEmpty: React.FC<IAppEmptyProps> = ({ icon, iconSize, text, layout }) =>
   );
 };
 
+AppEmpty.defaultProps = {
+  text: undefined,
+  icon: undefined,
+  iconSize: undefined,
+  layout: undefined,
+};
+
 export default AppEmpty;

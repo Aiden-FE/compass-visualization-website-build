@@ -1,5 +1,5 @@
 import { get } from 'lodash-es';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Skeleton } from 'antd';
 
 export interface ISystemComponentProps {
@@ -9,6 +9,7 @@ export interface ISystemComponentProps {
   exportName?: string;
   /** 透传给umd组件的属性 */
   attrs?: any;
+  children?: React.ReactElement;
 }
 
 const AppSystemComponent: React.FC<ISystemComponentProps> = ({ children, umdUrl, exportName, attrs }) => {
@@ -35,7 +36,7 @@ const AppSystemComponent: React.FC<ISystemComponentProps> = ({ children, umdUrl,
       .finally(() => {
         setLoading(false);
       });
-  }, [umdUrl]);
+  }, [umdUrl, exportName]);
 
   if (!umdUrl || error) {
     // eslint-disable-next-line no-console
@@ -45,6 +46,12 @@ const AppSystemComponent: React.FC<ISystemComponentProps> = ({ children, umdUrl,
 
   // eslint-disable-next-line react/jsx-props-no-spreading
   return <Skeleton loading={loading}>{SysCom && <SysCom {...attrs}>{children}</SysCom>}</Skeleton>;
+};
+
+AppSystemComponent.defaultProps = {
+  exportName: undefined,
+  attrs: undefined,
+  children: undefined,
 };
 
 export default AppSystemComponent;

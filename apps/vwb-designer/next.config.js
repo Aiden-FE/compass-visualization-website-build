@@ -18,6 +18,7 @@ const path = require('path');
 const nextConfig = {
   reactStrictMode: true,
   i18n,
+  pageExtensions: ['page.tsx', 'page.ts', 'page.jsx', 'page.js'],
   sassOptions: {
     additionalData: `
       @import "@compass-aiden/styles/dist/static/bem.scss";

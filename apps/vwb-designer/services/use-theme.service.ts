@@ -16,6 +16,7 @@ const initTheme = debounce(
       },
     });
     Object.keys(ThemeConfig).forEach((key) => {
+      // @ts-ignore
       ThemeInstance.register(key, ThemeConfig[key]);
     });
 

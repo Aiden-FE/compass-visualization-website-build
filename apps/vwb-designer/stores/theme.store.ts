@@ -22,8 +22,10 @@ const themeSlice = createSlice({
       state.theme = action.payload.theme;
       // eslint-disable-next-line no-param-reassign
       state.themeData = action.payload.themeData;
-      // eslint-disable-next-line no-param-reassign
-      state.antdTheme.token.colorPrimary = action.payload.themeData?.['--vwb-primary-color'] || '#00c0c9';
+      if (state.antdTheme?.token) {
+        // eslint-disable-next-line no-param-reassign
+        state.antdTheme.token.colorPrimary = (action.payload.themeData?.['--vwb-primary-color'] as string) || '#00c0c9';
+      }
     },
   },
 });

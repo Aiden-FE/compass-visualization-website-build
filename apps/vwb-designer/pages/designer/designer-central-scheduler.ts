@@ -28,7 +28,9 @@ export default class DesignerCentralScheduler extends CentralScheduler {
       if (this.configurationStack.length > this.maxStackDeep) {
         this.configurationStack.shift();
       }
-      this.configurationStack.push(config);
+      if (config) {
+        this.configurationStack.push(config);
+      }
       this.logger.debug('配置发生变更: ', config, '配置堆栈已更新: ', this.configurationStack);
       this.updateActionStatus({
         isAllowRedo: this.isAllowRedo,
@@ -68,9 +70,14 @@ export default class DesignerCentralScheduler extends CentralScheduler {
     if (this.configurationUndoStack.length > this.maxStackDeep) {
       this.configurationUndoStack.shift();
     }
-    this.configurationUndoStack.push(undoData);
-    this.logger.debug('执行撤销, 被撤销的数据为: ', undoData);
-    this.updateConfiguration(this.configurationStack.pop(), { merge: false });
+    if (undoData) {
+      this.configurationUndoStack.push(undoData);
+      this.logger.debug('执行撤销, 被撤销的数据为: ', undoData);
+    }
+    const currentData = this.configurationStack.pop();
+    if (currentData) {
+      this.updateConfiguration(currentData, { merge: false });
+    }
     return true;
   }
 
@@ -82,8 +89,10 @@ export default class DesignerCentralScheduler extends CentralScheduler {
       return false;
     }
     const redoData = this.configurationUndoStack.pop();
-    this.logger.debug('执行重做, 重做的数据为: ', redoData);
-    this.updateConfiguration(redoData, { merge: false });
+    if (redoData) {
+      this.logger.debug('执行重做, 重做的数据为: ', redoData);
+      this.updateConfiguration(redoData, { merge: false });
+    }
     return true;
   }
 }

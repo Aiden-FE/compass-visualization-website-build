@@ -18,7 +18,6 @@ const DesignerSiderFixed: React.FC<IDesignerSiderFixedProps> = () => (
         attrs={{
           text: 'test',
         }}
-        text="test"
       />
       <DesignerSiderMaterials />
     </div>
