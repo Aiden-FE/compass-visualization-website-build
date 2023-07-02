@@ -1,0 +1,11 @@
+{
+  "common": {},
+  "light": {
+    "--vwb-foreground-color": "#212121",
+    "--vwb-background-color": "#FFFFFF"
+  },
+  "dark": {
+    "--vwb-foreground-color": "#212121",
+    "--vwb-background-color": "rgb(0, 0, 0)"
+  }
+}

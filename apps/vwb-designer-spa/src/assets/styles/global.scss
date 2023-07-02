@@ -1,0 +1,14 @@
+@import '@compass-aiden/styles/dist/assets/base.css';
+@import '@compass-aiden/styles/dist/assets/scrollbar.css';
+//@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  color: var(--cp-foreground-color, #212121);
+  background-color: var(--cp-background-color, #ffffff);
+}
+
+#root {
+  height: 100%;
+}
