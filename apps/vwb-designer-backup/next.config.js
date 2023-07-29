@@ -1,16 +1,37 @@
+const { i18n } = require('./next-i18next.config');
+const fs = require('fs');
+const path = require('path');
+
+[
+  {
+    from: path.join(__dirname, 'node_modules/@compass-aiden/vwb-atomic-text/dist/vwb-atomic-text.umd.js'),
+    to: path.join(__dirname, 'public/3rd/vwb-atomic-text.umd.js'),
+  },
+].forEach((item) => {
+  if (!fs.existsSync(path.dirname(item.to))) {
+    fs.mkdirSync(path.dirname(item.to), { recursive: true });
+  }
+  fs.copyFileSync(item.from, item.to);
+});
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'tailwindui.com',
+      },
+    ],
+  },
   reactStrictMode: true,
-  // output: 'export', // 静态部署模式放开
+  i18n,
+  pageExtensions: ['page.tsx', 'page.ts', 'page.jsx', 'page.js'],
   sassOptions: {
     additionalData: `
       @import "@compass-aiden/styles/dist/static/bem.scss";
-      @import "@/assets/styles/variables.scss";
+      @import "./assets/styles/variables.module.scss";
     `,
-  },
-  images: {
-    dangerouslyAllowSVG: true,
-    domains: ['tailwindui.com'],
   },
   webpack(config) {
     // Grab the existing rule that handles SVG imports
@@ -28,7 +49,7 @@ const nextConfig = {
         test: /\.svg$/i,
         issuer: /\.[jt]sx?$/,
         resourceQuery: { not: /url/ }, // exclude if *.svg?url
-        use: ['@svgr/webpack'],
+        use: [{ loader: '@svgr/webpack', options: { icon: true } }],
       },
     );
 

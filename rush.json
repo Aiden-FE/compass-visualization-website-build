@@ -336,10 +336,6 @@
       "projectFolder": "apps/vwb-designer"
     },
     {
-      "packageName": "vwb-designer-spa",
-      "projectFolder": "apps/vwb-designer-spa"
-    },
-    {
       "packageName": "compass-vwb-server",
       "projectFolder": "apps/vwb-server"
     },

@@ -1,264 +1,249 @@
 # compass-vwb-designer
 
-> 前端可视化建站项目
+> 可视化设计器
 
 ## Features
 
-- Scss & BEM & tailwind
+### 支持 sass,Postcss,tailwind
 
-支持`.scss`样式文件,无需支持可使用`pnpm remove sass`移除支持
+示例如下:
 
-支持 BEM,以下是结合 CSS Modules 的 BEM 示例:
+```tsx
+import styles from './example.module.scss';
 
-样式声明
+function ExamplePage() {
+  return (
+    <div className={`${styles.container} flex min-h-full flex-col justify-center px-6 py-12 lg:px-8`}>
+      This is example.
+    </div>
+  );
+}
+
+export default ExamplePage;
+```
+
+### 支持 BEM
+
+示例如下:
+
+*index.module.scss*文件内容:
 
 ```scss
-// demo.module.scss
-@include b(test) {
-  background-color: red;
+@include b(example) {
+  @apply text-base; // apply是在使用tailwind的css
   @include e(element) {
-    background-color: yellowgreen;
-    @include m(active) {
-      background-color: aqua;
+    @apply font-bold;
+    @include m(modifier) {
+      @apply text-blue-400;
     }
   }
 }
 ```
 
-使用 BEM & CSS Modules 样式
+组件用法:
 
-```typescript jsx
-import { NextPageWithLayout } from '@/app-env';
-import styles from './demo.module.scss';
+```tsx
+import styles from './index.module.scss';
 
-const DemoPage: NextPageWithLayout = () => {
+function ExamplePage() {
   return (
-    <>
-      BEM example:
-      <div className={styles['cp-test']}>
-        block
-        <div className={styles['cp-test__element']}>element</div>
-        <div className={styles['cp-test__element_active']}>modify</div>
+    <div className={styles['cp-example']}>
+      Block 块级选择示例
+      <div className={styles['cp-example__element']}>
+        Element 元素选择示例
+        <div className={styles['cp-example__element_modifier']}>Modifier 状态选择示例</div>
       </div>
-    </>
+    </div>
   );
-};
+}
 
-export default DemoPage;
+export default ExamplePage;
 ```
 
-_如果需要更换'cp'作用域前缀,请替换`assets/styles/variables.module.scss`内的$domain 变量值_
+> 如果需要更换 `cp` 作用域前缀请修改 `src/assets/styles/variables.scss` 文件内容的$domain 值
 
-默认支持 tailwind
+### 支持 Icon 及 Svg 使用
 
-```typescript jsx
-import { NextPageWithLayout } from '@/app-env';
+基于 [Iconify](https://iconify.design/docs/) 实现,所有[IconSets](https://icon-sets.iconify.design/)图标均可直接使用,内部按需加载,并且支持直接使用项目内部的 svg 文件
 
-const DemoPage: NextPageWithLayout = () => {
+示例如下:
+
+```tsx
+import AppIcon from '@/components/app-icon/app-icon';
+import SvgIcon from '@/components/app-icon/svg-icon';
+
+function ExamplePage() {
   return (
     <>
-      <div className="text-3xl font-bold underline">tailwind example</div>
+      {/* 使用 IconSets所有图标 */}
+      <AppIcon icon="mdi-light:home" />
+      {/* 使用业务特有的svg图标文件 */}
+      <SvgIcon />
     </>
   );
-};
+}
 
-export default DemoPage;
+export default ExamplePage;
 ```
 
-- Icons & Svg
+如果希望直接使用 Svg 文件而不是通过 SvgIcon 组件中转,请确保是在 use client 客户端渲染模式下导入,例如:
 
-使用[IconIfy](https://iconify.design/docs/)图标库文件,参考[Iconify for Tailwind CSS](https://iconify.design/docs/usage/css/tailwind/)用法
+```tsx
+'use client';
 
-使用特定图标库需要引入对应配置文件,类似 `@iconify-json/{prefix}`, 其中`{prefix}`替换为实际图表库前缀, 或者直接使用`@iconify/json`全量配置来使用全部[Icons](https://icon-sets.iconify.design/)文件
+import SvgSetting from '@/assets/svgs/setting.svg';
 
-以 Antd icons 为例
-
-首先安装 Ant Design Icons 配置文件: `pnpm add -D @iconify-json/ant-design`
-
-```typescript jsx
-import { NextPageWithLayout } from '@/app-env';
-
-const DemoPage: NextPageWithLayout = () => {
+function ExamplePage() {
   return (
     <>
-      <span
-        className="icon-[ant-design--ant-design-outlined]"
-        style={{
-          color: '#00b9b2',
-          fontSize: '48px',
-        }}
-      />
+      {/* 使用业务特有的svg图标文件 */}
+      <SvgSetting />
     </>
   );
-};
+}
 
-export default DemoPage;
+export default ExamplePage;
 ```
 
-使用 svg 文件
+### 支持 Stores 状态管理
 
-```typescript jsx
-import CatSvg from '@/assets/svgs/cat.svg';
+新建 Store 时,请参考`templates/example.store.ts`文件内的使用引导即可
 
-import { NextPageWithLayout } from '@/app-env';
+使用 Store 示例如下:
 
-const DemoPage: NextPageWithLayout = () => {
-  return (
-    <>
-      <CatSvg
-        style={{
-          width: '48px',
-          height: '48px',
-        }}
-      />
-    </>
-  );
-};
+```tsx
+import { useAppSelector, useAppDispatch, exampleActions } from '@/stores';
 
-export default DemoPage;
-```
-
-- Stores & Theme
-
-当需要新建一个 Store 时,请复制`templates/store.template.ts`文件到`stores/*`文件夹内,并在`stores/store.ts`的 reducer 内导入,在`stores/index.ts`内导出新 store 所有的可用导出,store 的具体用法参考如下:
-
-```typescript jsx
-import { NextPageWithLayout } from '@/app-env';
-import { useAppDispatch, exampleActions, useAppSelector } from '@/stores';
-
-const DemoPage: NextPageWithLayout = () => {
+function ExamplePage() {
+  const example = useAppSelector((state) => state.example);
   const dispatch = useAppDispatch();
-  // 读取store内的值
-  const text = useAppSelector((state) => state.example.text);
 
-  function setStore() {
-    // 执行具体store内的动作
+  function updateStore() {
+    // 更新store
     dispatch(exampleActions.update({}));
   }
 
-  return (
-    <>
-      <h1>{text}</h1>
-      <button onClick={toggleLang} type="button">
-        修改Store
-      </button>
-    </>
-  );
-};
+  return <>{example.test}</>;
+}
 
-export default DemoPage;
+export default ExamplePage;
 ```
 
-主题使用说明:
+### 主题使用
 
-```typescript jsx
-import { NextPageWithLayout } from '@/app-env';
+主题变量表存在于 `src/config/theme.json`,
+
+当需要新增一个主题时,在主题变量表新增一个 `{ [key: string]: Record<string, string | number> }` 数据即可,common 为保留字段,其下的所有值在任何主题内生效
+
+当需要读取或变更主题时,参考如下:
+
+```tsx
 import { useAppSelector } from '@/stores';
-import { useThemeService } from '@/services';
 import { AvailableTheme } from '@/config';
 
-const DemoPage: NextPageWithLayout = () => {
-  const { getThemeInstance } = useThemeService();
-  // 读取当前主题
-  const theme = useAppSelector((state) => state.theme.theme);
-  // 读取当前主题数据
-  const themeData = useAppSelector((state) => state.theme.themeData);
+function ExamplePage() {
+  const theme = useAppSelector((state) => state.theme);
 
-  // 切换主题
-  function toggleTheme(themeKey: AvailableTheme) {
-    getThemeInstance().toggle(themeKey);
+  function toggleTheme(themeName: AvailableTheme) {
+    theme.themeInstance.toggle(themeName);
   }
 
   return (
     <>
-      当前主题:
-      {theme}
-      <br />
-      当前主题数据:
-      {JSON.stringify(themeData)}
-      <br />
-      <button onClick={() => toggleTheme(AvailableTheme.AUTO)} type="button">
-        使用默认主题
-      </button>
-      <br />
-      <button onClick={() => toggleTheme(AvailableTheme.LIGHT)} type="button">
-        使用亮色主题
-      </button>
-      <br />
-      <button onClick={() => toggleTheme(AvailableTheme.DARK)} type="button">
-        使用暗黑主题
-      </button>
+      <div>当前主题: {theme?.theme}</div>
+      <div>当前主题数据: {JSON.stringify(theme?.themeData)}</div>
+      <div>
+        <button onClick={() => toggleTheme(AvailableTheme.AUTO)} type="button">
+          使用默认系统主题
+        </button>
+        <button onClick={() => toggleTheme(AvailableTheme.LIGHT)} type="button">
+          使用亮色主题
+        </button>
+        <button onClick={() => toggleTheme(AvailableTheme.DARK)} type="button">
+          使用暗色主题
+        </button>
+      </div>
     </>
   );
-};
+}
 
-export default DemoPage;
+export default ExamplePage;
 ```
 
-主题变量表位于`config/theme.json`路径. 其中 common 属性是所有主题生效的主题变量
+### 国际化
 
-当需要扩展一个新的主题,请直接在主题变量表内新增即可
+国际化文件均位于 `src/i18n/locales/[language]/[namespace].json`
 
-- I18n
+扩展国际化文件:
 
-翻译文件存放于 `public/locales/[language]/*.json`
+- 在`src/i18n/locales/`目录下新建对应命名空间的翻译文件
+- 更新`src/config/index.ts`文件内的 AvailableLanguages,AvailableLanguagesNS,Languages 等变量
 
-使用示例:
+#### 服务端渲染国际化
 
-```typescript jsx
-import { NextPageWithLayout } from '@/app-env';
-import { useTranslation } from 'next-i18next';
-import { getLocaleProps } from '@/utils';
-import { useRouter } from 'next/router';
-import { AvailableLanguages, I18nNamespaces } from '@/config';
+```tsx
+import { useTranslation } from '@/i18n';
+import { ComponentProps } from '@/interfaces';
+import { AvailableLanguages } from '@/config';
+import Link from 'next/link';
 
-const DemoPage: NextPageWithLayout = () => {
-  const { t, i18n } = useTranslation(I18nNamespaces.COMMON);
-  const router = useRouter();
+async function I18nExample({ lang }: ComponentProps) {
+  const { t, i18n } = await useTranslation(lang);
 
-  function toggleLang() {
-    if (i18n.language === AvailableLanguages.ZH_CN) {
-      const path = router.asPath;
-      router.push(path, path, { locale: AvailableLanguages.EN });
-    } else {
-      const path = router.asPath;
-      router.push(path, path, { locale: AvailableLanguages.ZH_CN });
-    }
+  return (
+    <div>
+      {t('currentLanguage', { lang: i18n.resolvedLanguage })}
+      <br />
+      <div>
+        <Link href={`/${AvailableLanguages.ZH_CN}/example`}>使用中文</Link>
+        <br />
+        <Link href={`/${AvailableLanguages.EN}/example`}>Use English</Link>
+      </div>
+    </div>
+  );
+}
+
+export default I18nExample;
+```
+
+#### 客户端渲染国际化
+
+```tsx
+'use client';
+
+import { useClientTranslation } from '@/i18n/client';
+import { AvailableLanguages } from '@/config';
+
+function ClientI18nExample() {
+  const { t, i18n } = useClientTranslation();
+
+  function toggleLang(lng: AvailableLanguages) {
+    i18n.changeLanguage(lng);
   }
 
   return (
-    <>
-      Current lang is:
-      {i18n.language}
+    <div>
+      {t('currentLanguage', { lang: i18n.resolvedLanguage })}
       <br />
-      {t('test')}
-      <br />
-      <button onClick={toggleLang} type="button">
-        切换语言环境
-      </button>
-    </>
+      <div>
+        <button onClick={() => toggleLang(AvailableLanguages.ZH_CN)} type="button">
+          使用中文
+        </button>
+        <button onClick={() => toggleLang(AvailableLanguages.EN)} type="button">
+          Use English
+        </button>
+      </div>
+    </div>
   );
-};
+}
 
-// 动态路由添加
-// export const getStaticPaths: GetStaticPaths = async () => ({
-//   paths: [],
-//   fallback: 'blocking',
-// });
-
-export const getStaticProps = getLocaleProps(I18nNamespaces.COMMON);
-
-export default DemoPage;
+export default ClientI18nExample;
 ```
 
-- Eslint
+### 支持 Eslint 更健壮的代码检查
 
-```shell
-pnpm lint
-```
+`pnpm lint` 进行检查
 
-- Prettier
+### 支持 Prettier 格式化
 
-```shell
-pnpm format
-```
+`pnpm format` 进行格式化

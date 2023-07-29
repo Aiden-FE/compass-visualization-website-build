@@ -127,7 +127,7 @@ Thumbs.db
 # misc
 package-lock.json
 yarn.lock
-#pnpm-lock.yaml
+pnpm-lock.yaml
 
 # compiled output
 tmp
@@ -162,6 +162,8 @@ speed-measure-plugin*.json
 # misc
 *.pem
 
+# debug
+
 # local env files
 .env*.local
 
@@ -171,3 +173,5 @@ speed-measure-plugin*.json
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+public/3rd
