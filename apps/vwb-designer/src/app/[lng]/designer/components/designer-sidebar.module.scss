@@ -1,0 +1,11 @@
+@include b(designer-sidebar) {
+  @include e(fixed) {
+    @apply relative w-[300px] xl:w-[350px] 2xl:w-[400px] shadow-lg flex-none bg-white flex border-0 border-r-2 border-t-2 border-slate-100 border-solid;
+  }
+  @include e(float) {
+    @apply w-[80px] flex-none bg-white;
+  }
+  @include e(menus) {
+    @apply w-12 h-full border-0 border-r-2 border-slate-100 border-solid;
+  }
+}

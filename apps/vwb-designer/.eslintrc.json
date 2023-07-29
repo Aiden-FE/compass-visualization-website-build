@@ -5,6 +5,6 @@
     "project": ["tsconfig.json", "tsconfig.node.json"]
   },
   "rules": {
-    "react-hooks/rules-of-hooks": "off"
+    "react/require-default-props": "off"
   }
 }

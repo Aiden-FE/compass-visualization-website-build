@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import acceptLanguage from 'accept-language';
-import { AvailableLanguages, Languages } from '@/config';
+import { AvailableLanguages, Languages } from '@/i18n';
 
 acceptLanguage.languages(Languages);
 

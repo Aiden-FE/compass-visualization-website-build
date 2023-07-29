@@ -2,8 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import LoginForm from '@/components/login-form/login-form';
 import { PageProps } from '@/interfaces';
-import { useTranslation } from '@/i18n';
-import { AvailableLanguagesNS } from '@/config';
+import { useTranslation, AvailableLanguagesNS } from '@/i18n';
 
 async function HomePage({ params: { lng } }: PageProps) {
   const { t } = await useTranslation(lng, AvailableLanguagesNS.LOGIN);

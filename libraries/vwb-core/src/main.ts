@@ -1,7 +1,4 @@
-export function demo() {
-  return 'demo';
-}
+export { default as CentralScheduler } from '@/central-scheduler';
+export { default as DesignerCentralScheduler } from '@/designer-central-scheduler';
 
-export function demo2() {
-  return 'demo2';
-}
+export * from './interfaces';

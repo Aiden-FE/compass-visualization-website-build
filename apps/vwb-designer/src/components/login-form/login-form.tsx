@@ -2,8 +2,7 @@
 
 import { FormEvent } from 'react';
 import { ComponentProps } from '@/interfaces';
-import { AvailableLanguagesNS } from '@/config';
-import { useClientTranslation } from '@/i18n/client';
+import { AvailableLanguagesNS, useClientTranslation } from '@/i18n';
 
 function LoginForm({ lang }: ComponentProps) {
   const { t } = useClientTranslation(lang, AvailableLanguagesNS.LOGIN);

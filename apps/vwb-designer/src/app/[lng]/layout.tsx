@@ -4,7 +4,7 @@ import { Inter } from 'next/font/google';
 import React from 'react';
 import AppWrap from '@/components/app-wrap/app-wrap';
 import { dir } from 'i18next';
-import { Languages } from '@/config';
+import { Languages } from '@/i18n';
 import { PageProps } from '@/interfaces';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -21,6 +21,10 @@ export async function generateStaticParams() {
 export default function RootLayout({ children, params: { lng } }: PageProps & { children: React.ReactNode }) {
   return (
     <html lang={lng} dir={dir(lng)}>
+      <head>
+        {/* eslint-disable-next-line @next/next/no-sync-scripts */}
+        <script src="https://cdn.jsdelivr.net/npm/systemjs@6.14.1/dist/system.min.js" />
+      </head>
       <body className={inter.className} suppressHydrationWarning>
         <AppWrap>{children}</AppWrap>
       </body>

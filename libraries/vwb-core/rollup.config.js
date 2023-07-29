@@ -25,7 +25,7 @@ function getPlugins(disablePlugins = [], options = {}) {
       !isProd &&
       serve(
         options.serve || {
-          port: 3000,
+          port: 3500,
           contentBase: '.',
         },
       ),

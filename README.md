@@ -24,6 +24,8 @@ ci 环境使用此命令`node common/scripts/install-run-rush.js install`
 
 `rush remove -p [package_name]` 在对应项目路径下执行删除依赖
 
+`rush upgrade-interactive` 通过交互式命令行升级指定依赖
+
 ### 执行项目内命令
 
 `rushx [script_name]` 在项目路径下执行此命令可运行项目内 scripts 命令
