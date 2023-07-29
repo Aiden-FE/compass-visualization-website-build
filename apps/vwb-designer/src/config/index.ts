@@ -16,6 +16,7 @@ export enum AvailableLanguages {
 
 export enum AvailableLanguagesNS {
   COMMON = 'common',
+  LOGIN = 'login',
 }
 
 export const Languages = [AvailableLanguages.ZH_CN, AvailableLanguages.EN];

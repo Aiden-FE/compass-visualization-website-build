@@ -5,5 +5,5 @@ export interface PageProps {
 }
 
 export interface ComponentProps {
-  lang?: AvailableLanguages;
+  lang?: AvailableLanguages | undefined;
 }

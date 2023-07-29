@@ -25,7 +25,8 @@
     "react-redux": "^8.1.1",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.4.2",
-    "redux": "~4.2.1"
+    "redux": "~4.2.1",
+    "antd": "~5.7.3"
   },
   "devDependencies": {
     "@compass-aiden/eslint-config": "^1.6.2",

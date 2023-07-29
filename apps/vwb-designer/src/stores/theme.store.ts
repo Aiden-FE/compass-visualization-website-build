@@ -3,8 +3,10 @@ import { ThemeManager } from '@compass-aiden/utils';
 import { AvailableTheme, ThemeConfig } from '@/config';
 import debounce from 'lodash-es/debounce';
 import type { RootState } from '@/stores/store';
+import { ThemeConfig as AntdThemeConfig } from 'antd';
 
 interface ThemeState {
+  antdTheme?: AntdThemeConfig;
   themeInstance?: InstanceType<typeof ThemeManager>;
   theme?: string;
   themeData?: Record<string, string | number> | null | undefined;
@@ -26,6 +28,11 @@ export const initializeThemeAsync = createAsyncThunk(
             themeActions.update({
               theme: theme || AvailableTheme.AUTO,
               themeData,
+              antdTheme: {
+                token: {
+                  colorPrimary: themeData?.['--vwb-primary-color'],
+                },
+              },
             }),
           );
         }, 200),
@@ -61,6 +68,10 @@ const themeSlice = createSlice({
       state.theme = action.payload?.theme || AvailableTheme.AUTO;
       // eslint-disable-next-line no-param-reassign
       state.themeData = action.payload?.themeData;
+      if (action.payload?.antdTheme) {
+        // eslint-disable-next-line no-param-reassign
+        state.antdTheme = action.payload.antdTheme;
+      }
       if (action.payload.themeInstance) {
         // eslint-disable-next-line no-param-reassign
         state.themeInstance = action.payload.themeInstance;
