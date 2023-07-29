@@ -47,11 +47,11 @@ import styles from './index.module.scss';
 
 function ExamplePage() {
   return (
-    <div className={styles['cp-example']}>
+    <div className={styles['vwb-example']}>
       Block 块级选择示例
-      <div className={styles['cp-example__element']}>
+      <div className={styles['vwb-example__element']}>
         Element 元素选择示例
-        <div className={styles['cp-example__element_modifier']}>Modifier 状态选择示例</div>
+        <div className={styles['vwb-example__element_modifier']}>Modifier 状态选择示例</div>
       </div>
     </div>
   );
@@ -60,7 +60,7 @@ function ExamplePage() {
 export default ExamplePage;
 ```
 
-> 如果需要更换 `cp` 作用域前缀请修改 `src/assets/styles/variables.scss` 文件内容的$domain 值
+> 如果需要更换 `vwb` 作用域前缀请修改 `src/assets/styles/variables.scss` 文件内容的$domain 值
 
 ### 支持 Icon 及 Svg 使用
 
@@ -69,8 +69,7 @@ export default ExamplePage;
 示例如下:
 
 ```tsx
-import AppIcon from '@/components/app-icon/app-icon';
-import SvgIcon from '@/components/app-icon/svg-icon';
+import { AppIcon, SvgIcon } from '@/components/app-icon';
 
 function ExamplePage() {
   return (
