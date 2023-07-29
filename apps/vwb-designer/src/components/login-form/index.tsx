@@ -1,10 +1,10 @@
 'use client';
 
 import { FormEvent } from 'react';
-import { ComponentProps } from '@/interfaces';
+import { CommonComponentProps } from '@/interfaces';
 import { AvailableLanguagesNS, useClientTranslation } from '@/i18n';
 
-function LoginForm({ lang }: ComponentProps) {
+function LoginForm({ lang }: CommonComponentProps) {
   const { t } = useClientTranslation(lang, AvailableLanguagesNS.LOGIN);
 
   function submit(ev: FormEvent) {

@@ -1,5 +1,5 @@
 import { Button, Tooltip } from 'antd';
-import AppIcon from '@/components/app-icon/app-icon';
+import { AppIcon } from '@/components/app-icon';
 
 function DesignerSidebarMenus() {
   return (

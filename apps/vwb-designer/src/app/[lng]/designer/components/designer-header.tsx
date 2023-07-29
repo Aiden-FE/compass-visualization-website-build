@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { DesignerCentralScheduler, IDesignerCentralSchedulerState, VWBConfiguration } from '@compass-aiden/vwb-core';
 import { Button, Space, Tooltip } from 'antd';
-import AppIcon from '@/components/app-icon/app-icon';
+import { AppIcon } from '@/components/app-icon';
 import { AvailableLanguagesNS, useClientTranslation } from '@/i18n';
 import { CommonComponentProps } from '@/interfaces';
 
@@ -10,7 +10,7 @@ export interface IDesignerHeaderProps {
   onSubmit?: (configuration: VWBConfiguration) => void;
 }
 
-const DesignerHeader: CommonComponentProps<IDesignerHeaderProps> = ({ centralScheduler, onSubmit, lang }) => {
+const DesignerHeader = ({ centralScheduler, onSubmit, lang }: CommonComponentProps<IDesignerHeaderProps>) => {
   const { t } = useClientTranslation(lang, AvailableLanguagesNS.DESIGNER);
   const [configuration, setConfiguration] = useState<VWBConfiguration>(new VWBConfiguration());
 

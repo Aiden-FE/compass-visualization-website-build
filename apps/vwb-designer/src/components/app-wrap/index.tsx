@@ -1,7 +1,7 @@
 import React from 'react';
 import { StoresProvider } from '@/stores';
-import InitClientWrap from '@/components/app-wrap/init-client-wrap';
-import AntdConfigProvider from '@/components/app-wrap/antd-config-provider';
+import InitClientWrap from './init-client-wrap';
+import AntdConfigProvider from './antd-config-provider';
 
 function AppWrap({ children }: { children: React.ReactNode }) {
   return (

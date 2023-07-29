@@ -1,10 +1,10 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import LoginForm from '@/components/login-form/login-form';
-import { PageProps } from '@/interfaces';
+import LoginForm from '@/components/login-form';
+import { CommonPageProps } from '@/interfaces';
 import { useTranslation, AvailableLanguagesNS } from '@/i18n';
 
-async function HomePage({ params: { lng } }: PageProps) {
+async function HomePage({ params: { lng } }: CommonPageProps) {
   const { t } = await useTranslation(lng, AvailableLanguagesNS.LOGIN);
 
   return (
