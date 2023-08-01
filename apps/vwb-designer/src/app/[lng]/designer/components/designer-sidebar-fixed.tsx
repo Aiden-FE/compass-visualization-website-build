@@ -10,7 +10,6 @@ function DesignerSidebarFixed(params: CommonComponentProps) {
         <DesignerSidebarMenus />
       </div>
       <div>
-        Display materials
         <DesignerSidebarMaterials />
       </div>
     </div>
