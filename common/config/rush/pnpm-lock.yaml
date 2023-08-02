@@ -39,6 +39,7 @@ importers:
       i18next-browser-languagedetector: ^7.1.0
       i18next-resources-to-backend: ^1.1.4
       lodash-es: ^4.17.21
+      nanoid: ~4.0.2
       next: 13.4.12
       postcss: 8.4.27
       prettier: ^3.0.0
@@ -65,6 +66,7 @@ importers:
       i18next-browser-languagedetector: 7.1.0
       i18next-resources-to-backend: 1.1.4
       lodash-es: 4.17.21
+      nanoid: 4.0.2
       next: 13.4.12_dyegiurxkzdnwrd7wrqpbk2mtm
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
@@ -10705,6 +10707,13 @@ packages:
       { integrity: sha512-BGcqMMJuToF7i1rt+2PWSNVnWIkGCU78jBG3RxO/bZlnZPK2Cmi2QaffxGO/2RvWi9sL+FAiRiXMgsyxQ1DIDA== }
     engines: { node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1 }
     hasBin: true
+
+  /nanoid/4.0.2:
+    resolution:
+      { integrity: sha512-7ZtY5KTCNheRGfEFxnedV5zFiORN1+Y1N6zvPTnHQd8ENUvfaDBeuJDZb2bN/oXwXxu3qkTXDzy57W5vAmDTBw== }
+    engines: { node: ^14 || ^16 || >=18 }
+    hasBin: true
+    dev: false
 
   /natural-compare-lite/1.4.0:
     resolution:
