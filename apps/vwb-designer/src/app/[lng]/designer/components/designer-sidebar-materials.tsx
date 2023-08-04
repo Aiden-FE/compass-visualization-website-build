@@ -16,11 +16,46 @@ function DesignerSidebarMaterials() {
       >
         Content
       </Card.Grid>
-      <Card.Grid style={gridStyle}>Content</Card.Grid>
-      <Card.Grid style={gridStyle}>Content</Card.Grid>
-      <Card.Grid style={gridStyle}>Content</Card.Grid>
-      <Card.Grid style={gridStyle}>Content</Card.Grid>
-      <Card.Grid style={gridStyle}>Content</Card.Grid>
+      <Card.Grid
+        draggable
+        unselectable="on"
+        onDragStart={(e: DragEvent) => e.dataTransfer?.setData('text/plain', '')}
+        style={gridStyle}
+      >
+        Content
+      </Card.Grid>
+      <Card.Grid
+        draggable
+        unselectable="on"
+        onDragStart={(e: DragEvent) => e.dataTransfer?.setData('text/plain', '')}
+        style={gridStyle}
+      >
+        Content
+      </Card.Grid>
+      <Card.Grid
+        draggable
+        unselectable="on"
+        onDragStart={(e: DragEvent) => e.dataTransfer?.setData('text/plain', '')}
+        style={gridStyle}
+      >
+        Content
+      </Card.Grid>
+      <Card.Grid
+        draggable
+        unselectable="on"
+        onDragStart={(e: DragEvent) => e.dataTransfer?.setData('text/plain', '')}
+        style={gridStyle}
+      >
+        Content
+      </Card.Grid>
+      <Card.Grid
+        draggable
+        unselectable="on"
+        onDragStart={(e: DragEvent) => e.dataTransfer?.setData('text/plain', '')}
+        style={gridStyle}
+      >
+        Content
+      </Card.Grid>
     </Card>
   );
 }

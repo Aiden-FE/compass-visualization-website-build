@@ -7,13 +7,14 @@ import summary from 'rollup-plugin-summary';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import serve from 'rollup-plugin-serve';
+import { visualizer } from 'rollup-plugin-visualizer';
 import pkg from './package.json';
 
 const isProd = !process.env.ROLLUP_WATCH;
 
 /**
  * @description 获取构建插件
- * @param {('serve'|'nodeResolve'|'commonjs'|'compiler'|'terser'|'cleanup'|'summary')[]} disablePlugins 待禁用的插件
+ * @param {('serve'|'nodeResolve'|'commonjs'|'compiler'|'terser'|'cleanup'|'summary'|'visualizer')[]} disablePlugins 待禁用的插件
  * @param {{[key: string]: object}} options
  * @return {(Plugin|false|{generateBundle: generateBundle, name: string})[]}
  */
@@ -45,6 +46,7 @@ function getPlugins(disablePlugins = [], options = {}) {
           showMinifiedSize: true,
         },
       ),
+    !disablePlugins.includes('visualizer') && isProd && visualizer(options.visualizer || undefined),
   ];
 }
 
@@ -97,7 +99,7 @@ export default [
       exports: 'auto',
     }),
     external: getExternal(),
-    plugins: getPlugins(undefined, {
+    plugins: getPlugins(['visualizer'], {
       nodeResolve: { browser: true },
     }),
   },
@@ -109,7 +111,7 @@ export default [
       exports: 'auto',
     }),
     external: getExternal(),
-    plugins: getPlugins(undefined, {
+    plugins: getPlugins(['visualizer'], {
       nodeResolve: { browser: false, exportConditions: ['node'] },
     }),
   },
