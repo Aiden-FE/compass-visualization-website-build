@@ -1,4 +1,4 @@
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import CentralScheduler from './central-scheduler';
 import { IDesignerCentralSchedulerOption, IDesignerCentralSchedulerState, VWBConfiguration } from './interfaces';
 

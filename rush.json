@@ -345,6 +345,11 @@
       "versionPolicyName": "vwb-core"
     },
     {
+      "packageName": "@compass-aiden/vwb-renderer",
+      "projectFolder": "libraries/vwb-renderer",
+      "versionPolicyName": "vwb-core"
+    },
+    {
       "packageName": "@compass-aiden/vwb-atomic-text",
       "projectFolder": "components/vwb-atomic-text",
       "versionPolicyName": "plugins"
