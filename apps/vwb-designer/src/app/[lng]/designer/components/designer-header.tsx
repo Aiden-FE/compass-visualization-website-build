@@ -19,12 +19,12 @@ const DesignerHeader = ({ centralScheduler, onSubmit, lang }: CommonComponentPro
     isAllowRedo: false,
   });
 
-  function togglePlatform(platform: VWBConfiguration['platform']) {
-    if (platform === configuration.platform) {
+  function togglePlatform(platform: VWBConfiguration['configuration']['platform']) {
+    if (platform === configuration.configuration.platform) {
       return;
     }
     centralScheduler.updateConfiguration({
-      platform,
+      configuration: { platform },
     });
   }
 
@@ -75,7 +75,7 @@ const DesignerHeader = ({ centralScheduler, onSubmit, lang }: CommonComponentPro
             role="button"
             tabIndex={0}
             className={`p-1.5 cursor-pointer ${
-              configuration.platform === 'pc' ? 'bg-slate-100 text-[var(--vwb-primary-color)]' : ''
+              configuration.configuration.platform === 'pc' ? 'bg-slate-100 text-[var(--vwb-primary-color)]' : ''
             }`}
           >
             <AppIcon className="text-[24px]" icon="mdi:laptop" />
@@ -88,7 +88,7 @@ const DesignerHeader = ({ centralScheduler, onSubmit, lang }: CommonComponentPro
             role="button"
             tabIndex={0}
             className={`p-1.5 cursor-pointer ${
-              configuration.platform === 'tablet' ? 'bg-slate-100 text-[var(--vwb-primary-color)]' : ''
+              configuration.configuration.platform === 'tablet' ? 'bg-slate-100 text-[var(--vwb-primary-color)]' : ''
             }`}
           >
             <AppIcon className="text-[24px]" icon="ant-design:tablet-outlined" />
@@ -101,7 +101,7 @@ const DesignerHeader = ({ centralScheduler, onSubmit, lang }: CommonComponentPro
             role="button"
             tabIndex={0}
             className={`p-1.5 cursor-pointer ${
-              configuration.platform === 'mobile' ? 'bg-slate-100 text-[var(--vwb-primary-color)]' : ''
+              configuration.configuration.platform === 'mobile' ? 'bg-slate-100 text-[var(--vwb-primary-color)]' : ''
             }`}
           >
             <AppIcon className="text-[24px]" icon="mdi:cellphone" />

@@ -6,7 +6,7 @@
   "type": "module",
   "main": "dist/vwb-renderer.es.js",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite build --watch",
     "build": "tsc && vite build",
     "lint": "eslint src --fix --ext ts,tsx",
     "preview": "vite preview"

@@ -1,16 +1,27 @@
 import { Responsive, WidthProvider } from 'react-grid-layout';
 import { useState, useMemo } from 'react';
-import { VWBLayout } from '@compass-aiden/vwb-core';
+import { CentralScheduler, VWBLayout } from '@compass-aiden/vwb-core';
 import VWBWidget from '@/components/vwb-widget';
 import 'react-grid-layout/css/styles.css';
 import 'react-resizable/css/styles.css';
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
 
-export interface IVWBRendererProps {}
+export interface IVWBRendererProps {
+  centralScheduler: CentralScheduler;
+  className?: string;
+  onDrop?: () => void;
+}
 
-export default function VWBRenderer() {
+export default function VWBRenderer({ className, centralScheduler }: IVWBRendererProps) {
   const [layouts, setLayouts] = useState<VWBLayout[]>([]);
+
+  useEffect(() => {
+    const sub = centralScheduler.configurationObservable.subscribe((pageConfig) => {
+      setLayouts(pageConfig.configuration.layouts);
+    });
+    return () => sub.unsubscribe();
+  }, [centralScheduler.configurationObservable]);
 
   /**
    * @desc 当放置后生成目标布局
@@ -45,7 +56,7 @@ export default function VWBRenderer() {
 
   return (
     <ResponsiveGridLayout
-      className="vwb-renderer min-h-[100px] border-dashed border-1 border-[var(--vwb-primary-color)] bg-white"
+      className={`vwb-renderer min-h-[100px] bg-white ${className || ''}`}
       breakpoints={{ lg: 768, md: 375, sm: 0 }}
       layouts={{ lg: layouts }}
       cols={{ lg: 12, md: 6, sm: 2 }}

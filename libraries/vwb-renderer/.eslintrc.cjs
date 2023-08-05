@@ -4,4 +4,7 @@ module.exports = {
   parserOptions: {
     project: ['./tsconfig.json', './tsconfig.node.json'],
   },
+  rules: {
+    'react/require-default-props': 'off',
+  },
 };
