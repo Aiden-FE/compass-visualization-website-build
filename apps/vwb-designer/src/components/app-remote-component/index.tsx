@@ -20,8 +20,9 @@ function AppRemoteComponent({ children, umdUrl, exportName, attrs }: ISystemComp
 
   useEffect(() => {
     if (!umdUrl) return;
-    System?.import(umdUrl)
-      .then((Com) => {
+    // @ts-ignore
+    window.System?.import(umdUrl)
+      .then((Com: any) => {
         const Component = get(Com, exportName || 'default');
 
         // 这里需要注意的是，res 因为是组件，所以类型是 function

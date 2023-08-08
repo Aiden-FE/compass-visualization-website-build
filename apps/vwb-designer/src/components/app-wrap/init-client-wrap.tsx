@@ -1,11 +1,15 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import { initializeThemeAsync, useAppDispatch } from '@/stores';
 import { initSystemGlobalDeps, getSystemjs } from '@/utils/systemjs.util';
 import { CommonComponentProps } from '@/interfaces';
 
-function InitClientWrap({ children }: CommonComponentProps) {
+function InitClientWrap({
+  children,
+}: CommonComponentProps<{
+  children: ReactNode;
+}>) {
   const dispatch = useAppDispatch();
   const [systemLoaded, setSystemLoaded] = useState(false);
 

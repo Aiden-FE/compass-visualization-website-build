@@ -11,7 +11,7 @@ function DesignerSidebarMaterials() {
       <Card.Grid
         draggable
         unselectable="on"
-        onDragStart={(e: DragEvent) => e.dataTransfer?.setData('text/plain', '')}
+        onDragStart={(e) => e.dataTransfer.setData('text/plain', '')}
         style={gridStyle}
       >
         Content
@@ -19,7 +19,7 @@ function DesignerSidebarMaterials() {
       <Card.Grid
         draggable
         unselectable="on"
-        onDragStart={(e: DragEvent) => e.dataTransfer?.setData('text/plain', '')}
+        onDragStart={(e) => e.dataTransfer.setData('text/plain', '')}
         style={gridStyle}
       >
         Content
@@ -27,7 +27,7 @@ function DesignerSidebarMaterials() {
       <Card.Grid
         draggable
         unselectable="on"
-        onDragStart={(e: DragEvent) => e.dataTransfer?.setData('text/plain', '')}
+        onDragStart={(e) => e.dataTransfer.setData('text/plain', '')}
         style={gridStyle}
       >
         Content
@@ -35,7 +35,7 @@ function DesignerSidebarMaterials() {
       <Card.Grid
         draggable
         unselectable="on"
-        onDragStart={(e: DragEvent) => e.dataTransfer?.setData('text/plain', '')}
+        onDragStart={(e) => e.dataTransfer.setData('text/plain', '')}
         style={gridStyle}
       >
         Content
@@ -43,7 +43,7 @@ function DesignerSidebarMaterials() {
       <Card.Grid
         draggable
         unselectable="on"
-        onDragStart={(e: DragEvent) => e.dataTransfer?.setData('text/plain', '')}
+        onDragStart={(e) => e.dataTransfer.setData('text/plain', '')}
         style={gridStyle}
       >
         Content
@@ -51,7 +51,7 @@ function DesignerSidebarMaterials() {
       <Card.Grid
         draggable
         unselectable="on"
-        onDragStart={(e: DragEvent) => e.dataTransfer?.setData('text/plain', '')}
+        onDragStart={(e) => e.dataTransfer.setData('text/plain', '')}
         style={gridStyle}
       >
         Content

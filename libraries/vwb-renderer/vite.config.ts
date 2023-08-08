@@ -5,7 +5,7 @@ import AutoImport from 'unplugin-auto-import/vite';
 import Icons from 'unplugin-icons/vite';
 import IconsResolver from 'unplugin-icons/resolver';
 import { visualizer } from 'rollup-plugin-visualizer';
-
+import dts from 'vite-plugin-dts';
 import path from 'node:path';
 import { builtinModules } from 'node:module';
 import { fileURLToPath, URL } from 'node:url';
@@ -14,6 +14,9 @@ import pkg from './package.json';
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
+    dts({
+      outDir: 'types',
+    }),
     react({
       jsxRuntime: 'classic',
     }),

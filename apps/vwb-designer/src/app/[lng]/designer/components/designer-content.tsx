@@ -22,7 +22,10 @@ function DesignerContent({ centralScheduler }: CommonComponentProps<{ centralSch
     <div
       className={`overflow-auto bg-[#f5f5f5] ${styles[`vwb-designer-content_${configuration.configuration.platform}`]}`}
     >
-      <VWBRenderer className="border-dashed border-1 border-[var(--vwb-primary-color)]" />
+      <VWBRenderer
+        centralScheduler={centralScheduler}
+        className="border-dashed border-1 border-[var(--vwb-primary-color)]"
+      />
     </div>
   );
 }

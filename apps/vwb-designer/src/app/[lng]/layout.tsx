@@ -1,11 +1,11 @@
 import '@/assets/styles/global.scss';
-import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import React from 'react';
 import AppWrap from '@/components/app-wrap';
 import { dir } from 'i18next';
 import { Languages } from '@/i18n';
 import { CommonPageProps } from '@/interfaces';
+import type { Metadata } from 'next';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -18,7 +18,12 @@ export async function generateStaticParams() {
   return Languages.map((lng) => ({ lng }));
 }
 
-export default function RootLayout({ children, params: { lng } }: CommonPageProps) {
+export default function RootLayout({
+  children,
+  params: { lng },
+}: CommonPageProps<{
+  children: React.ReactNode;
+}>) {
   return (
     <html lang={lng} dir={dir(lng)}>
       <head>

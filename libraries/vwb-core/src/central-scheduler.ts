@@ -1,6 +1,6 @@
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { Logger } from '@compass-aiden/utils';
-import { VWBConfiguration, ICentralSchedulerOption } from '@/interfaces';
+import { VWBConfiguration, ICentralSchedulerOption, DeepPartial } from '@/interfaces';
 
 export default class CentralScheduler {
   protected option: ICentralSchedulerOption;
@@ -26,7 +26,7 @@ export default class CentralScheduler {
   }
 
   public updateConfiguration<IsMerge extends boolean = true>(
-    config: IsMerge extends true ? Partial<VWBConfiguration> : VWBConfiguration,
+    config: IsMerge extends true ? DeepPartial<VWBConfiguration> : VWBConfiguration,
     opt?: {
       /** 与当前配置合并 */
       merge?: IsMerge;
@@ -36,12 +36,14 @@ export default class CentralScheduler {
       merge: true,
       ...opt,
     };
-    let newConfig = config;
+    let newConfig: VWBConfiguration;
     if (option.merge) {
-      newConfig = VWBConfiguration.merge(this.configurationSubject.getValue(), config);
+      newConfig = VWBConfiguration.merge({}, this.configurationSubject.getValue(), config as VWBConfiguration);
+    } else {
+      newConfig = config as VWBConfiguration;
     }
     this.logger.debug('更新配置: ', newConfig);
-    this.configurationSubject.next(newConfig as VWBConfiguration);
+    this.configurationSubject.next(newConfig);
   }
 
   public destroy() {

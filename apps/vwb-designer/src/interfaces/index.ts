@@ -1,11 +1,9 @@
 import { AvailableLanguages } from '@/i18n';
-import type { ReactNode } from 'react';
 
-export type CommonComponentProps<P = {}> = {
+export type CommonComponentProps<P extends Record<any, any> = object> = {
   lang?: AvailableLanguages | undefined;
 } & P;
 
 export type CommonPageProps<P = {}> = {
-  children?: ReactNode;
   params: { lng?: AvailableLanguages };
 } & P;

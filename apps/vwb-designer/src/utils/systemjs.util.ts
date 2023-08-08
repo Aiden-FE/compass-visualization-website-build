@@ -2,7 +2,7 @@ import React from 'react';
 import reactDOM from 'react-dom';
 import { IS_CLIENT } from '@/config';
 
-export function getSystemjs(): Promise<typeof System> {
+export function getSystemjs(): Promise<any> {
   const startTime = Date.now();
   return new Promise((resolve, reject) => {
     if (!IS_CLIENT) {

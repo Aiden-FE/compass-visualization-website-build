@@ -2,7 +2,7 @@
 
 import { Layout } from 'antd';
 import { useState, useEffect } from 'react';
-import { DesignerCentralScheduler } from '@compass-aiden/vwb-core';
+import { VWBConfiguration, DesignerCentralScheduler } from '@compass-aiden/vwb-core';
 import { IS_DEV } from '@/config';
 import { CommonPageProps } from '@/interfaces';
 import DesignerHeader from './components/designer-header';
@@ -13,16 +13,21 @@ import DesignerContent from './components/designer-content';
 function DesignerPage({ params: { lng } }: CommonPageProps) {
   const [centralScheduler, setCentralScheduler] = useState<DesignerCentralScheduler>();
 
+  function onSubmit(config: VWBConfiguration) {
+    // eslint-disable-next-line no-console
+    console.log('Save config: ', config);
+  }
+
   useEffect(() => {
     setCentralScheduler(
       new DesignerCentralScheduler({
-        logLevel: IS_DEV && 'debug',
+        logLevel: IS_DEV ? 'debug' : 'log',
       }),
     );
     return () => {
       centralScheduler?.destroy();
     };
-  }, [setCentralScheduler]);
+  });
 
   return (
     <Layout className="w-full h-full">

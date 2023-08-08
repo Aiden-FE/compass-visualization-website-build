@@ -11,9 +11,9 @@ function DesignerSidebar({ lang }: CommonComponentProps) {
   }
 
   return sidebarMode === 'fixed' ? (
-    <DesignerSidebarFixed lang={lang} onToggleSiderMode={() => toggleSidebar()} />
+    <DesignerSidebarFixed lang={lang} onToggleSidebarMode={() => toggleSidebar()} />
   ) : (
-    <DesignerSidebarFloat lang={lang} onToggleSiderMode={() => toggleSidebar()} />
+    <DesignerSidebarFloat lang={lang} onToggleSidebarMode={() => toggleSidebar()} />
   );
 }
 
