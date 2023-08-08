@@ -1,7 +1,6 @@
 {
   "name": "@compass-aiden/vwb-atomic-text",
   "description": "",
-  "private": true,
   "version": "0.0.1",
   "type": "module",
   "main": "dist/vwb-atomic-text.umd.js",
