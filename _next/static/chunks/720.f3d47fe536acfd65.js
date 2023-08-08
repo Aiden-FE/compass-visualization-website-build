@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[720],{82720:function(e){e.exports=JSON.parse('{"Undo":"Undo","Redo":"Redo","Desktop side":"Desktop side","Tablet side":"Tablet side","Mobile side":"Mobile side","Save":"Save"}')}}]);

@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[814],{76814:function(e){e.exports=JSON.parse('{"Undo":"撤消","Redo":"重做","Desktop side":"桌面端","Tablet side":"平板电脑端","Mobile side":"移动端","Save":"保存"}')}}]);
