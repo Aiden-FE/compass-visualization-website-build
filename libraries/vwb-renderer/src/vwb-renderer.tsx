@@ -1,5 +1,5 @@
 import { Responsive, WidthProvider } from 'react-grid-layout';
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { CentralScheduler, VWBLayout } from '@compass-aiden/vwb-core';
 import VWBWidget from '@/components/vwb-widget';
 import 'react-grid-layout/css/styles.css';
