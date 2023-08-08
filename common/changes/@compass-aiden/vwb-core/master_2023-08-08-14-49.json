@@ -1,0 +1,10 @@
+{
+  "changes": [
+    {
+      "packageName": "@compass-aiden/vwb-core",
+      "comment": "init",
+      "type": "none"
+    }
+  ],
+  "packageName": "@compass-aiden/vwb-core"
+}
