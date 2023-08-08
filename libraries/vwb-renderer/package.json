@@ -11,6 +11,10 @@
     "lint": "eslint src --fix --ext ts,tsx",
     "preview": "vite preview"
   },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
   "browserslist": {
     "production": [
       ">0.2%",
