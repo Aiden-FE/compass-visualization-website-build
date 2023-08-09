@@ -15,6 +15,10 @@
     "registry": "https://registry.npmjs.org/",
     "access": "public"
   },
+  "files": [
+    "dist",
+    "types"
+  ],
   "browserslist": {
     "production": [
       ">0.2%",

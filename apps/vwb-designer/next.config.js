@@ -16,8 +16,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  output: 'export', // 静态部署模式放开
-  basePath: process.env.NODE_ENV === 'development' ? '/' : '/compass-visualization-website-build',
+  output: 'standalone',
+  // basePath: process.env.NODE_ENV === 'development' ? '/' : '/compass-visualization-website-build',
   sassOptions: {
     additionalData: `
       @import "@compass-aiden/styles/dist/static/bem.scss";

@@ -5,10 +5,13 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && node scripts/standalone.js",
     "start": "next start",
     "lint": "next lint --fix"
   },
+  "files": [
+    "dist"
+  ],
   "dependencies": {
     "@compass-aiden/styles": "^1.1.1",
     "@compass-aiden/utils": "^1.7.0",
