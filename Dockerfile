@@ -12,7 +12,7 @@ ARG WORKDIR_DIR=/root/compass-vwb
 
 WORKDIR ${WORKDIR_DIR}
 
-COPY common/deploy ${WORKDIR_DIR}
+COPY ./common/deploy ${WORKDIR_DIR}
 
 EXPOSE 3000
 
