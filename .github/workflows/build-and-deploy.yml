@@ -93,6 +93,12 @@ jobs:
           node common/scripts/install-run-rush.js build --verbose
           node common/scripts/install-run-rush.js deploy
 
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: deploy-files
+          path: common/deploy
+
       # 发布变更包
       - name: Publish
         env:
@@ -115,6 +121,12 @@ jobs:
         with:
           username: ${{ vars.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Download build artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: deploy-files
+          path: common/
 
       # 构建并推送镜像
       - name: Build and push to docker
