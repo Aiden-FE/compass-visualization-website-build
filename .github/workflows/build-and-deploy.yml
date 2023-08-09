@@ -93,12 +93,6 @@ jobs:
           node common/scripts/install-run-rush.js build --verbose
           node common/scripts/install-run-rush.js deploy
 
-      - name: Upload build artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: deploy-files
-          path: common/deploy
-
       # 发布变更包
       - name: Publish
         env:
@@ -110,23 +104,11 @@ jobs:
           node common/scripts/install-run-rush.js publish --publish --include-all
 
       # https://github.com/marketplace/actions/build-and-push-docker-images
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v2
-
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2
-
       - name: Login to Docker Hub
         uses: docker/login-action@v2
         with:
           username: ${{ vars.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-
-      - name: Download build artifact
-        uses: actions/download-artifact@v2
-        with:
-          name: deploy-files
-          path: common/
 
       # 构建并推送镜像
       - name: Build and push to docker
