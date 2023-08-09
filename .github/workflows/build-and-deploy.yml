@@ -123,5 +123,5 @@ jobs:
         with:
           push: true
           tags: |
-            docker378928518/compass-vwb:latest
-            docker378928518/compass-vwb:${{ github.ref }}
+            ${{ secrets.DOCKERHUB_USERNAME }}/compass-vwb:latest
+            ${{ secrets.DOCKERHUB_USERNAME }}/compass-vwb:${{ github.ref }}
