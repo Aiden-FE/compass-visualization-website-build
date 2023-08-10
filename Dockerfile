@@ -18,6 +18,6 @@ EXPOSE 13000
 
 ENV PORT 13000
 
-ENV HOSTNAME localhost
+ENV HOSTNAME 0.0.0.0
 
 CMD ["node", "apps/vwb-designer/dist/server.js"]
