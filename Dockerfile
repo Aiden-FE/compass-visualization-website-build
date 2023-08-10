@@ -14,10 +14,10 @@ WORKDIR ${WORKDIR_DIR}
 
 COPY ./common/deploy ${WORKDIR_DIR}
 
-EXPOSE 18081
+EXPOSE 3000
 
-ENV PORT 18081
+ENV PORT 3000
 
-ENV HOSTNAME aiden.cpolar.cn
+#ENV HOSTNAME aiden.cpolar.cn
 
 CMD ["node", "apps/vwb-designer/dist/server.js"]
