@@ -105,7 +105,7 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           push: true
-          context: github.workspace
+          context: ${{ github.workspace }}
           build-args: |
             SOURCE_DIR=${{ github.workspace }}
           tags: |
