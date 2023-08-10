@@ -104,10 +104,8 @@ jobs:
       - name: Build and push to docker
         uses: docker/build-push-action@v4
         with:
+          context: .
           push: true
-          context: ${{ github.workspace }}
-          build-args: |
-            SOURCE_DIR=${{ github.workspace }}
           tags: |
             ${{ vars.DOCKERHUB_USERNAME }}/compass-vwb:latest
             ${{ vars.DOCKERHUB_USERNAME }}/compass-vwb:${{ steps.get_version.outputs.VERSION }}

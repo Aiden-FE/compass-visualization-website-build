@@ -8,12 +8,11 @@ MAINTAINER Aiden_FE <Aiden_FE@outlook.com>
 
 ENV NODE_ENV production
 
-ARG SOURCE_DIR=.
 ARG WORKDIR_DIR=/root/compass-vwb
 
 WORKDIR ${WORKDIR_DIR}
 
-COPY ${SOURCE_DIR}/common/deploy ${WORKDIR_DIR}
+COPY ./common/deploy ${WORKDIR_DIR}
 
 EXPOSE 3000
 
