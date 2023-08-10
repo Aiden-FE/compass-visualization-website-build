@@ -93,16 +93,6 @@ jobs:
           node common/scripts/install-run-rush.js build --verbose
           node common/scripts/install-run-rush.js deploy
 
-      # 发布变更包
-      - name: Publish libraries
-        env:
-          NPM_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
-          HUSKY: 0
-        run: |
-          node common/scripts/install-run-rush.js change --verify
-          node common/scripts/install-run-rush.js version --bump --target-branch master
-          node common/scripts/install-run-rush.js publish --publish --include-all
-
       # https://github.com/marketplace/actions/build-and-push-docker-images
       - name: Login to Docker Hub
         uses: docker/login-action@v2
@@ -123,3 +113,13 @@ jobs:
             tree -aCL 3
             ${{ vars.DOCKERHUB_USERNAME }}/compass-vwb:latest
             ${{ vars.DOCKERHUB_USERNAME }}/compass-vwb:${{ steps.get_version.outputs.VERSION }}
+
+      # 发布变更包
+      - name: Publish libraries
+        env:
+          NPM_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
+          HUSKY: 0
+        run: |
+          node common/scripts/install-run-rush.js change --verify
+          node common/scripts/install-run-rush.js version --bump --target-branch master
+          node common/scripts/install-run-rush.js publish --publish --include-all
