@@ -8,7 +8,7 @@ on:
       - v*
 
   # Allows you to run this workflow manually from the Actions tab
-#  workflow_dispatch:
+workflow_dispatch:
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
@@ -104,11 +104,11 @@ jobs:
       - name: Build and push to docker
         uses: docker/build-push-action@v4
         with:
-          context: .
           push: true
           build-args: |
-            SOURCE_DIR=${{ GITHUB_WORKSPACE }}
+            SOURCE_DIR=${{ github.workspace }}
           tags: |
+            echo ${{ github.workspace }}
             pwd
             tree -aCL 3
             ${{ vars.DOCKERHUB_USERNAME }}/compass-vwb:latest
