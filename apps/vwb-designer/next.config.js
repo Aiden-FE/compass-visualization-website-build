@@ -17,7 +17,7 @@
 const nextConfig = {
   reactStrictMode: true,
   output: 'standalone',
-  basePath: process.env.NODE_ENV === 'development' ? '/' : '/vwb',
+  // basePath: process.env.NODE_ENV === 'development' ? '/' : '/vwb',
   sassOptions: {
     additionalData: `
       @import "@compass-aiden/styles/dist/static/bem.scss";
