@@ -24,3 +24,5 @@ fs.cpSync(resolver('../public'), resolver('../dist/public'), {
   recursive: true,
   force: true,
 });
+
+console.log('当前路径: ', process.cwd());
