@@ -1,7 +1,13 @@
 const fs = require('fs');
 const path = require('path');
+const childProcess = require('child_process');
 
-console.log('Standalone脚本执行, 执行路径: %s, 工作目录为: %s', process.cwd(), process.env.GITHUB_WORKSPACE);
+childProcess.execSync(
+  `echo Standalone脚本执行, 执行路径: ${process.cwd()}, 工作目录为: ${process.env.GITHUB_WORKSPACE}`,
+  {
+    stdio: 'inherit',
+  },
+);
 
 function resolver(...pathStr) {
   return path.join(__dirname, ...pathStr);
