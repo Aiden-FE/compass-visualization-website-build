@@ -18,6 +18,6 @@ EXPOSE 13000
 
 ENV PORT 13000
 
-ENV HOSTNAME aiden-vwb.cpolar.cn
+#ENV HOSTNAME localhost
 
 CMD ["node", "apps/vwb-designer/dist/server.js"]
