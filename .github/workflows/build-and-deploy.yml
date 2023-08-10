@@ -118,6 +118,6 @@ jobs:
           push: true
           tags: |
             pwd
-            tree -aCL 3 -I "node_modules|.git"
+            tree -aCL 3
             ${{ vars.DOCKERHUB_USERNAME }}/compass-vwb:latest
             ${{ vars.DOCKERHUB_USERNAME }}/compass-vwb:${{ steps.get_version.outputs.VERSION }}
