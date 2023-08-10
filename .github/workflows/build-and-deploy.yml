@@ -108,7 +108,7 @@ jobs:
           push: true
           tags: |
             ${{ vars.DOCKERHUB_USERNAME }}/compass-vwb:latest
-            ${{ vars.DOCKERHUB_USERNAME }}/compass-vwb:${{ steps.get_version.outputs.VERSION }}
+#            ${{ vars.DOCKERHUB_USERNAME }}/compass-vwb:${{ steps.get_version.outputs.VERSION }}
 
       # 发布变更包
       - name: Publish libraries
