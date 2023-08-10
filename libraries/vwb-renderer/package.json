@@ -1,7 +1,7 @@
 {
   "name": "@compass-aiden/vwb-renderer",
   "description": "可视化站点渲染器",
-  "version": "0.1.1-10",
+  "version": "0.1.1-11",
   "type": "module",
   "main": "dist/vwb-renderer.es.js",
   "types": "types/vwb-renderer.d.ts",
