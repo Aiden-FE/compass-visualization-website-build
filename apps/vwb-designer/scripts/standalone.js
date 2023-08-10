@@ -1,6 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 
+console.log('Standalone脚本执行, 执行路径: %s, 工作目录为: %s', process.cwd(), process.env.GITHUB_WORKSPACE);
+
 function resolver(...pathStr) {
   return path.join(__dirname, ...pathStr);
 }
@@ -24,5 +26,3 @@ fs.cpSync(resolver('../public'), resolver('../dist/public'), {
   recursive: true,
   force: true,
 });
-
-console.log('当前路径: ', process.cwd());
