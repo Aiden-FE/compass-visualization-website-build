@@ -1,6 +1,6 @@
 {
   "name": "@compass-aiden/vwb-core",
-  "version": "0.1.1-22",
+  "version": "0.1.1-23",
   "description": "可视化系统核心包",
   "main": "dist/main.umd.js",
   "jsdelivr": "dist/main.umd.js",
