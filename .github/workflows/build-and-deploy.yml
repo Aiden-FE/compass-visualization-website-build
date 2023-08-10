@@ -105,12 +105,10 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           push: true
+          context: github.workspace
           build-args: |
             SOURCE_DIR=${{ github.workspace }}
           tags: |
-            echo ${{ github.workspace }}
-            pwd
-            tree -aCL 3
             ${{ vars.DOCKERHUB_USERNAME }}/compass-vwb:latest
             ${{ vars.DOCKERHUB_USERNAME }}/compass-vwb:${{ steps.get_version.outputs.VERSION }}
 
