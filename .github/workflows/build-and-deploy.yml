@@ -89,8 +89,18 @@ jobs:
           NODE_ENV: production
           NODE_OPTIONS: --max_old_space_size=8192
         run: |
-          node common/scripts/install-run-rush.js build --verbose
+          node common/scripts/install-run-rush.js rebuild --verbose
           node common/scripts/install-run-rush.js deploy
+
+      # 发布变更包
+      - name: Publish libraries
+        env:
+          NPM_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
+          HUSKY: 0
+        run: |
+          node common/scripts/install-run-rush.js change --verify
+          node common/scripts/install-run-rush.js version --bump --target-branch master
+          node common/scripts/install-run-rush.js publish --publish --include-all
 
       # https://github.com/marketplace/actions/build-and-push-docker-images
       - name: Login to Docker Hub
@@ -108,13 +118,3 @@ jobs:
           tags: |
             ${{ vars.DOCKERHUB_USERNAME }}/compass-vwb:latest
             ${{ vars.DOCKERHUB_USERNAME }}/compass-vwb:${{ env.VERSION }}
-
-      # 发布变更包
-      - name: Publish libraries
-        env:
-          NPM_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
-          HUSKY: 0
-        run: |
-          node common/scripts/install-run-rush.js change --verify
-          node common/scripts/install-run-rush.js version --bump --target-branch master
-          node common/scripts/install-run-rush.js publish --publish --include-all
