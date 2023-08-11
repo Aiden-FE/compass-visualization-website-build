@@ -3,17 +3,24 @@
 import { FormEvent } from 'react';
 import { CommonComponentProps } from '@/interfaces';
 import { AvailableLanguagesNS, useClientTranslation } from '@/i18n';
+import { message } from 'antd';
 
 function LoginForm({ lang }: CommonComponentProps) {
   const { t } = useClientTranslation(lang, AvailableLanguagesNS.LOGIN);
+  const [messageApi, contextHolder] = message.useMessage();
 
   function submit(ev: FormEvent) {
     ev.preventDefault();
+    messageApi.error(t('Account or password error'));
   }
-  function forgotPassword() {}
+
+  function forgotPassword() {
+    messageApi.warning(t('Password recovery is not currently supported'));
+  }
 
   return (
     <form className="space-y-6" action="" method="POST" onSubmit={(e) => submit(e)}>
+      {contextHolder}
       <div>
         <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
           {t('Email address')}

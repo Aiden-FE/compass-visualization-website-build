@@ -11,7 +11,12 @@ export enum AvailableLanguagesNS {
   DESIGNER = 'designer',
 }
 
-export const Languages = [AvailableLanguages.ZH_CN, AvailableLanguages.EN];
+export const LanguagesMapping = [
+  { key: AvailableLanguages.ZH_CN, label: '简体中文' },
+  { key: AvailableLanguages.EN, label: 'English' },
+];
+
+export const Languages = LanguagesMapping.map((item) => item.key);
 
 /** 默认语言 */
 export const DEFAULT_LANGUAGE = AvailableLanguages.ZH_CN;

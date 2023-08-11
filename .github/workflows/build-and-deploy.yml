@@ -35,8 +35,7 @@ jobs:
 
       - name: Get the version
         id: get_version
-        run: echo ::set-output name=VERSION::${GITHUB_REF#refs/tags/}
-        shell: bash
+        run: echo "VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
 
       # 设置rush cache
       - name: Setup cache
@@ -108,7 +107,7 @@ jobs:
           push: true
           tags: |
             ${{ vars.DOCKERHUB_USERNAME }}/compass-vwb:latest
-            ${{ vars.DOCKERHUB_USERNAME }}/compass-vwb:${{ steps.get_version.outputs.VERSION }}
+            ${{ vars.DOCKERHUB_USERNAME }}/compass-vwb:${{ env.VERSION }}
 
       # 发布变更包
       - name: Publish libraries

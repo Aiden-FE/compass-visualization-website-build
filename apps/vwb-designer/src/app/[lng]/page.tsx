@@ -3,12 +3,16 @@ import Link from 'next/link';
 import LoginForm from '@/components/login-form';
 import { CommonPageProps } from '@/interfaces';
 import { useTranslation, AvailableLanguagesNS } from '@/i18n';
+import SwitchLang from '@/components/switch-lang';
 
 async function HomePage({ params: { lng } }: CommonPageProps) {
   const { t } = await useTranslation(lng, AvailableLanguagesNS.LOGIN);
 
   return (
     <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+      <div className="absolute right-4 top-4">
+        <SwitchLang lang={lng} />
+      </div>
       <div className="text-center sm:mx-auto sm:w-full sm:max-w-sm">
         <Image
           className="mx-auto h-10 w-auto"

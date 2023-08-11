@@ -27,7 +27,7 @@ function DesignerPage({ params: { lng } }: CommonPageProps) {
     return () => {
       centralScheduler?.destroy();
     };
-  });
+  }, [DesignerCentralScheduler]);
 
   return (
     <Layout className="w-full h-full">

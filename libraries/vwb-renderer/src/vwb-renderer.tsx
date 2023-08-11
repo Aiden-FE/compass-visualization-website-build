@@ -10,33 +10,24 @@ const ResponsiveGridLayout = WidthProvider(Responsive);
 export interface IVWBRendererProps {
   centralScheduler: CentralScheduler;
   className?: string;
-  onDrop?: () => void;
+  droppingItem?: { i: string; w: number; h: number };
+  onDrop?: (layoutItem: VWBLayout) => void;
 }
 
-export default function VWBRenderer({ className, centralScheduler }: IVWBRendererProps) {
+export default function VWBRenderer({
+  className,
+  centralScheduler,
+  onDrop,
+  droppingItem = { i: 'dragElement', w: 4, h: 2 },
+}: IVWBRendererProps) {
   const [layouts, setLayouts] = useState<VWBLayout[]>([]);
 
   useEffect(() => {
     const sub = centralScheduler.configurationObservable.subscribe((pageConfig) => {
-      setLayouts(pageConfig.configuration.layouts);
+      setLayouts([...pageConfig.configuration.layouts]);
     });
     return () => sub.unsubscribe();
   }, [centralScheduler.configurationObservable]);
-
-  /**
-   * @desc 当放置后生成目标布局
-   * @param _
-   * @param layoutItem
-   */
-  function onDrop(_: unknown, layoutItem: VWBLayout) {
-    setLayouts([
-      ...layouts,
-      new VWBLayout({
-        ...layoutItem,
-        i: undefined,
-      }),
-    ]);
-  }
 
   /**
    * @desc 根据布局生成布局组件
@@ -58,16 +49,16 @@ export default function VWBRenderer({ className, centralScheduler }: IVWBRendere
     <ResponsiveGridLayout
       className={`vwb-renderer min-h-[100px] bg-white ${className || ''}`}
       breakpoints={{ lg: 768, md: 375, sm: 0 }}
-      layouts={{ lg: layouts }}
+      layouts={{ lg: layouts, md: layouts, sm: layouts }}
       cols={{ lg: 12, md: 6, sm: 2 }}
       isDroppable
       // WidthProvider option
       measureBeforeMount={false}
       // 防碰撞
       preventCollision
-      droppingItem={{ i: 'dragElement', w: 4, h: 2 }}
+      droppingItem={droppingItem}
       // 处理待放置的项
-      onDrop={(layout: unknown, layoutItem: VWBLayout) => onDrop(layout, layoutItem)}
+      onDrop={(_: unknown, layoutItem: VWBLayout) => onDrop?.(layoutItem)}
     >
       {renderWidgets}
     </ResponsiveGridLayout>

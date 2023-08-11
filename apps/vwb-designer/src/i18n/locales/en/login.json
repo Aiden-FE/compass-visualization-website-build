@@ -5,5 +5,7 @@
   "Email address": "Email address",
   "Password": "Password",
   "Forgot password": "Forgot password",
-  "Sign in": "Sign in"
+  "Sign in": "Sign in",
+  "Password recovery is not currently supported": "Password recovery is not currently supported",
+  "Account or password error": "Account or password error"
 }

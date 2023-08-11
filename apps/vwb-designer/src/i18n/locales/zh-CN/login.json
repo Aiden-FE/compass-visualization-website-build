@@ -5,5 +5,7 @@
   "Email address": "邮件地址",
   "Password": "密码",
   "Forgot password": "忘记密码",
-  "Sign in": "登录"
+  "Sign in": "登录",
+  "Password recovery is not currently supported": "暂不支持找回密码",
+  "Account or password error": "账号或密码错误"
 }

@@ -1,6 +1,6 @@
 @include b(designer-sidebar) {
   @include e(fixed) {
-    @apply relative w-[300px] xl:w-[350px] 2xl:w-[400px] shadow-lg flex-none bg-white flex border-0 border-r-2 border-t-2 border-slate-100 border-solid;
+    @apply relative w-[250px] xl:w-[300px] 2xl:w-[350px] shadow-lg flex-none bg-white flex border-0 border-r-2 border-t-2 border-slate-100 border-solid;
   }
   @include e(float) {
     @apply w-[80px] flex-none bg-white;
