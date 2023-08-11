@@ -14,10 +14,10 @@ WORKDIR ${WORKDIR_DIR}
 
 COPY ./common/deploy ${WORKDIR_DIR}
 
-EXPOSE 13000
+EXPOSE 3000
 
-#ENV PORT 13000
+#ENV PORT 3000
 
-#ENV HOSTNAME 0.0.0.0
+#ENV HOSTNAME localhost
 
 CMD ["node", "apps/vwb-designer/dist/server.js"]
