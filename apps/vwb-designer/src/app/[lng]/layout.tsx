@@ -28,7 +28,7 @@ export default function RootLayout({
     <html lang={lng} dir={dir(lng)}>
       <head>
         {/* eslint-disable-next-line @next/next/no-sync-scripts */}
-        <script src="https://cdn.jsdelivr.net/npm/systemjs@6.14.1/dist/system.min.js" />
+        <script src="https://aidenoss.cpolar.cn/compass-open/3rd/systemjs/system.min.js" />
       </head>
       <body className={`${inter.className} cp-scrollbar cp-scrollbar_fixed`} suppressHydrationWarning>
         <AppWrap>{children}</AppWrap>
