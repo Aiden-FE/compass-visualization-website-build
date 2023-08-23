@@ -76,23 +76,13 @@ function getOutput(options = {}) {
 }
 
 export default [
-  // esm bundle
-  {
-    input: 'src/main.ts',
-    output: getOutput(),
-    external: getExternal(),
-    plugins: getPlugins(),
-    watch: {
-      include: ['src/**', 'index.html'],
-    },
-  },
   // umd bundle
   isProd && {
     input: 'src/main.ts',
     output: getOutput({
       format: 'umd',
       file: pkg.main,
-      name: 'Compass' || pkg.name, // Set your library name.
+      name: 'VWBCore' || pkg.name, // Set your library name.
       dir: undefined,
       chunkFileNames: undefined,
       entryFileNames: undefined,
@@ -104,7 +94,7 @@ export default [
     }),
   },
   // commonjs bundle
-  {
+  isProd && {
     input: 'src/main.ts',
     output: getOutput({
       format: 'cjs',
@@ -114,5 +104,15 @@ export default [
     plugins: getPlugins(['visualizer'], {
       nodeResolve: { browser: false, exportConditions: ['node'] },
     }),
+  },
+  // esm bundle
+  {
+    input: 'src/main.ts',
+    output: getOutput(),
+    external: getExternal(),
+    plugins: getPlugins(),
+    watch: {
+      include: ['src/**', 'index.html'],
+    },
   },
 ].filter((item) => !!item);

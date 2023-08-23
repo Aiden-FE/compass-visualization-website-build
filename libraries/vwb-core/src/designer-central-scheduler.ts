@@ -1,15 +1,15 @@
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
-import CentralScheduler from './central-scheduler';
-import { IDesignerCentralSchedulerOption, IDesignerCentralSchedulerState, VWBConfiguration } from './interfaces';
+import AppCentralScheduler from './central-scheduler';
+import { IDesignerCentralSchedulerOption, IDesignerCentralSchedulerState, VWBApplication } from './interfaces';
 
-export default class DesignerCentralScheduler extends CentralScheduler {
-  private designerOption: IDesignerCentralSchedulerOption;
+export default class DesignerCentralScheduler extends AppCentralScheduler {
+  private designerOption: Required<IDesignerCentralSchedulerOption>;
 
-  private configurationStack: VWBConfiguration[] = [];
+  private configurationStack: VWBApplication[] = [];
 
-  private configurationUndoStack: VWBConfiguration[] = [];
+  private configurationUndoStack: VWBApplication[] = [];
 
-  private maxStackDeep = 20;
+  private maxStackDeep: number;
 
   private actionStatusSubject = new BehaviorSubject<IDesignerCentralSchedulerState>({
     isAllowUndo: false,
@@ -21,14 +21,16 @@ export default class DesignerCentralScheduler extends CentralScheduler {
   constructor(opt?: Partial<IDesignerCentralSchedulerOption>) {
     super(opt);
     this.designerOption = {
+      maxStackDeep: 20,
       ...this.option,
-    };
-    this.configurationObservable.subscribe((config) => {
+    } as Required<IDesignerCentralSchedulerOption>;
+    this.maxStackDeep = this.designerOption.maxStackDeep;
+    this.change.subscribe((config) => {
       if (this.configurationStack.length > this.maxStackDeep) {
         this.configurationStack.shift();
       }
       if (config) {
-        this.configurationStack.push(config);
+        this.configurationStack.push(VWBApplication.merge(config));
       }
       this.logger.debug('配置发生变更: ', config, '配置堆栈已更新: ', this.configurationStack);
       this.updateActionStatus({
@@ -75,7 +77,7 @@ export default class DesignerCentralScheduler extends CentralScheduler {
     }
     const currentData = this.configurationStack.pop();
     if (currentData) {
-      this.updateConfiguration(currentData, { merge: false });
+      this.updateConfig(currentData, { merge: false });
     }
     return true;
   }
@@ -90,7 +92,7 @@ export default class DesignerCentralScheduler extends CentralScheduler {
     const redoData = this.configurationUndoStack.pop();
     if (redoData) {
       this.logger.debug('执行重做, 重做的数据为: ', redoData);
-      this.updateConfiguration(redoData, { merge: false });
+      this.updateConfig(redoData, { merge: false });
     }
     return true;
   }

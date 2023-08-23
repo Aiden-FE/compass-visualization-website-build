@@ -1,6 +1,8 @@
 import type { Logger } from '@compass-aiden/utils';
+import { VWBApplication } from '@/interfaces/index';
 
 export interface ICentralSchedulerOption {
+  defaultAppConfig?: VWBApplication;
   logLevel?: Logger['config']['logLevel'];
   logSubject?: string;
 }

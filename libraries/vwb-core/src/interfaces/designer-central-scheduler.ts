@@ -6,4 +6,6 @@ export interface IDesignerCentralSchedulerState {
   isAllowRedo: boolean;
 }
 
-export interface IDesignerCentralSchedulerOption extends ICentralSchedulerOption {}
+export interface IDesignerCentralSchedulerOption extends ICentralSchedulerOption {
+  maxStackDeep?: number;
+}

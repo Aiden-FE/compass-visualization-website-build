@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { DesignerCentralScheduler, IDesignerCentralSchedulerState, VWBConfiguration } from '@compass-aiden/vwb-core';
+import { DesignerCentralScheduler, IDesignerCentralSchedulerState, VWBApplication } from '@compass-aiden/vwb-core';
 import { Button, Space, Tooltip } from 'antd';
 import { AppIcon } from '@/components/app-icon';
 import { AvailableLanguagesNS, useClientTranslation } from '@/i18n';
@@ -7,24 +7,24 @@ import { CommonComponentProps } from '@/interfaces';
 
 export interface IDesignerHeaderProps {
   centralScheduler: DesignerCentralScheduler;
-  onSubmit?: (configuration: VWBConfiguration) => void;
+  onSubmit?: (configuration: VWBApplication) => void;
 }
 
 const DesignerHeader = ({ centralScheduler, onSubmit, lang }: CommonComponentProps<IDesignerHeaderProps>) => {
   const { t } = useClientTranslation(lang, AvailableLanguagesNS.DESIGNER);
-  const [configuration, setConfiguration] = useState<VWBConfiguration>(new VWBConfiguration());
+  const [configuration, setConfiguration] = useState<VWBApplication>(new VWBApplication());
 
   const [actionStatus, setActionStatus] = useState<IDesignerCentralSchedulerState>({
     isAllowUndo: false,
     isAllowRedo: false,
   });
 
-  function togglePlatform(platform: VWBConfiguration['configuration']['platform']) {
-    if (platform === configuration.configuration.platform) {
+  function togglePlatform(platform: VWBApplication['platform']) {
+    if (platform === configuration.platform) {
       return;
     }
-    centralScheduler.updateConfiguration({
-      configuration: { platform },
+    centralScheduler.updateConfig({
+      platform,
     });
   }
 
@@ -33,7 +33,7 @@ const DesignerHeader = ({ centralScheduler, onSubmit, lang }: CommonComponentPro
   }
 
   useEffect(() => {
-    const sub = centralScheduler.configurationObservable.subscribe((config) => {
+    const sub = centralScheduler.change.subscribe((config) => {
       setConfiguration(config);
     });
     const sub2 = centralScheduler.actionStatusObservable.subscribe((status) => {
@@ -75,7 +75,7 @@ const DesignerHeader = ({ centralScheduler, onSubmit, lang }: CommonComponentPro
             role="button"
             tabIndex={0}
             className={`p-1.5 cursor-pointer ${
-              configuration.configuration.platform === 'pc' ? 'bg-slate-100 text-[var(--vwb-primary-color)]' : ''
+              configuration.platform === 'pc' ? 'bg-slate-100 text-[var(--vwb-primary-color)]' : ''
             }`}
           >
             <AppIcon className="text-[24px]" icon="mdi:laptop" />
@@ -88,7 +88,7 @@ const DesignerHeader = ({ centralScheduler, onSubmit, lang }: CommonComponentPro
             role="button"
             tabIndex={0}
             className={`p-1.5 cursor-pointer ${
-              configuration.configuration.platform === 'tablet' ? 'bg-slate-100 text-[var(--vwb-primary-color)]' : ''
+              configuration.platform === 'tablet' ? 'bg-slate-100 text-[var(--vwb-primary-color)]' : ''
             }`}
           >
             <AppIcon className="text-[24px]" icon="ant-design:tablet-outlined" />
@@ -101,7 +101,7 @@ const DesignerHeader = ({ centralScheduler, onSubmit, lang }: CommonComponentPro
             role="button"
             tabIndex={0}
             className={`p-1.5 cursor-pointer ${
-              configuration.configuration.platform === 'mobile' ? 'bg-slate-100 text-[var(--vwb-primary-color)]' : ''
+              configuration.platform === 'mobile' ? 'bg-slate-100 text-[var(--vwb-primary-color)]' : ''
             }`}
           >
             <AppIcon className="text-[24px]" icon="mdi:cellphone" />
