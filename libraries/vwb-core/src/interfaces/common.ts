@@ -7,13 +7,23 @@ export interface ICentralSchedulerOption {
   logSubject?: string;
 }
 
-export interface IVWBMaterial {
-  packageName: string;
-  version: string | 'latest';
-  exportName: '';
+/** React本地组件, 本地组件需要提前通过renderer包导出的注册器进行注册 */
+export interface IVWBReactComponentPresetMaterial {
+  type: 'react-component';
+  from: 'preset';
   componentName: string;
-  main: string;
 }
+
+/** React远程组件 */
+export interface IVWBReactComponentRemoteMaterial {
+  type: 'react-component';
+  from: 'remote';
+  componentName: string;
+  url: string;
+}
+
+/** 组件物料 */
+export type IVWBMaterial = IVWBReactComponentPresetMaterial | IVWBReactComponentRemoteMaterial;
 
 export type DeepPartial<T> = {
   [P in keyof T]?: T[P] extends Array<infer U>

@@ -8,6 +8,32 @@
   </head>
   <body class="cp-scrollbar">
     <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+    <script type="module">
+      import React, { createElement } from 'react';
+      import { createRoot } from 'react-dom/client';
+      import { VWBApplication, VWBPage } from '@compass-aiden/vwb-core';
+      import { VWBAppRenderer } from '/src/main';
+
+      window.React = React;
+
+      const page = new VWBPage({
+        layouts: [
+          {
+            i: '0001',
+            w: 2,
+            h: 2,
+            x: 0,
+            y: 0,
+          },
+        ],
+      });
+      const appConfig = new VWBApplication({
+        pages: [page],
+        selectedPageId: page.id,
+      });
+      const root = createRoot(document.querySelector('#root'));
+
+      root.render(createElement(VWBAppRenderer, { appConfig }));
+    </script>
   </body>
 </html>

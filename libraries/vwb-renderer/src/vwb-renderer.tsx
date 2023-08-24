@@ -5,8 +5,6 @@ import VWBWidget from '@/components/vwb-widget';
 import 'react-grid-layout/css/styles.css';
 import 'react-resizable/css/styles.css';
 
-const ResponsiveGridLayout = WidthProvider(Responsive);
-
 export interface IVWBRendererProps {
   appConfig: VWBApplication;
   className?: string;
@@ -36,6 +34,8 @@ export default function VWBRenderer({
       : null;
   }, [appConfig.selectedPage]);
 
+  const ResponsiveGridLayout = useMemo(() => WidthProvider(Responsive), []);
+
   return appConfig.selectedPage ? (
     <ResponsiveGridLayout
       className={`vwb-renderer min-h-[100px] bg-white ${className || ''}`}
@@ -44,6 +44,7 @@ export default function VWBRenderer({
         lg: appConfig.selectedPage.layouts,
         md: appConfig.selectedPage.layouts,
         sm: appConfig.selectedPage.layouts,
+        xs: appConfig.selectedPage.layouts,
       }}
       cols={{ lg: 12, md: 6, sm: 2 }}
       isDroppable

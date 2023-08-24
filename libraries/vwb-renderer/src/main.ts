@@ -1,4 +1,6 @@
-import VWBRenderer from './vwb-renderer';
+import VWBAppRenderer from './components/app-renderer';
+import VWBPageRenderer from './components/page-renderer';
+import VWBWidgetRenderer from './components/widget-renderer';
 import '@/assets/styles/global.scss';
 
-export default VWBRenderer;
+export { VWBAppRenderer, VWBPageRenderer, VWBWidgetRenderer };
