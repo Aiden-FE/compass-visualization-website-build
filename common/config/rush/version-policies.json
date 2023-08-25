@@ -13,11 +13,11 @@
     "definitionName": "lockStepVersion",
     "policyName": "vwb-core",
     "version": "0.1.1-29",
-    "nextBump": "prerelease"
+    "nextBump": "patch"
   },
   {
     "definitionName": "individualVersion",
-    "policyName": "plugins"
+    "policyName": "materials"
   }
   // {
   //   /**

@@ -20,6 +20,14 @@ export interface IVWBReactComponentRemoteMaterial {
   from: 'remote';
   componentName: string;
   url: string;
+  /**
+   * @description umd的导出名
+   * @default default
+   * @example
+   * export default Component; // 这种导出名就是default
+   * export { Component }; // 这种导出名就是Component
+   */
+  exportName?: string;
 }
 
 /** 组件物料 */

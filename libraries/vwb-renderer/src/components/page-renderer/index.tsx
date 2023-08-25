@@ -15,13 +15,18 @@ const ResponsiveGridLayout = WidthProvider(Responsive);
 export default function VWBPageRenderer({ pageConfig }: VWBPageRendererProps) {
   const gridItem = useMemo(() => {
     return pageConfig.layouts.map((item) => {
-      return (
+      const widget = pageConfig.widgets.find((widget) => widget.id === item.i);
+      if (!widget) {
+        console.error(`Not found widget by ${item.i}`);
+      }
+      return widget ? (
         <div className="vwb-pr__grid-item" key={item.i}>
-          <VWBWidgetRenderer />
+          <VWBWidgetRenderer widget={widget} layoutItem={item} />
         </div>
-      );
+      ) : null;
     });
   }, [pageConfig]);
+
   return (
     <ResponsiveGridLayout
       className="vwb-pr"

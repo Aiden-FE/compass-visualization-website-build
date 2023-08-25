@@ -1,9 +1,9 @@
 {
-  "name": "@compass-aiden/vwb-atomic-text",
+  "name": "@compass-aiden/vwb-material-text",
   "description": "",
   "version": "0.0.1",
   "type": "module",
-  "main": "dist/vwb-atomic-text.umd.js",
+  "main": "dist/vwb-material-text.umd.js",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",

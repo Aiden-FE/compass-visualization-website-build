@@ -3,4 +3,6 @@ import VWBPageRenderer from './components/page-renderer';
 import VWBWidgetRenderer from './components/widget-renderer';
 import '@/assets/styles/global.scss';
 
+export * from './materials';
+export { registerComponent, removeComponent, clearComponents } from './utils';
 export { VWBAppRenderer, VWBPageRenderer, VWBWidgetRenderer };

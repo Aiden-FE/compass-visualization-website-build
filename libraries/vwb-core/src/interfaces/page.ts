@@ -1,6 +1,7 @@
 import VWBLayoutItem from '@/interfaces/layout-item';
 import merge from 'lodash-es/merge';
 import { nanoid } from 'nanoid';
+import VWBWidget from '@/interfaces/widget';
 
 export default class VWBPage {
   /** 布局信息 */
@@ -8,6 +9,9 @@ export default class VWBPage {
 
   /** 页面id */
   id = nanoid();
+
+  /** 组件列表 */
+  widgets: VWBWidget[] = [];
 
   constructor(page?: Partial<VWBPage>) {
     if (page) {

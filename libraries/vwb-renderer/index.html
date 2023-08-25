@@ -8,11 +8,12 @@
   </head>
   <body class="cp-scrollbar">
     <div id="root"></div>
+    <script src="https://aidenoss.cpolar.cn/compass-open/3rd/systemjs/system.min.js"></script>
     <script type="module">
       import React, { createElement } from 'react';
       import { createRoot } from 'react-dom/client';
-      import { VWBApplication, VWBPage } from '@compass-aiden/vwb-core';
-      import { VWBAppRenderer } from '/src/main';
+      import { VWBApplication, VWBPage, VWBWidget } from '@compass-aiden/vwb-core';
+      import { VWBAppRenderer, registerComponent, Text } from '/src/main';
 
       window.React = React;
 
@@ -26,11 +27,28 @@
             y: 0,
           },
         ],
+        widgets: [
+          new VWBWidget({
+            id: '0001',
+            material: {
+              componentName: 'text',
+              from: 'remote',
+              type: 'react-component',
+              url: 'http://127.0.0.1:5174/dist/vwb-material-text.umd.js',
+            },
+            props: {
+              text: 'test',
+            },
+          }),
+        ],
       });
       const appConfig = new VWBApplication({
         pages: [page],
         selectedPageId: page.id,
       });
+
+      // registerComponent('text', createElement(Text, { text: 'Hi, this is Text component' }));
+
       const root = createRoot(document.querySelector('#root'));
 
       root.render(createElement(VWBAppRenderer, { appConfig }));
