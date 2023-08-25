@@ -1,4 +1,5 @@
 import { nanoid } from 'nanoid';
+import merge from 'lodash-es/merge';
 
 /** 页面布局项 */
 export default class VWBLayoutItem {
@@ -18,10 +19,8 @@ export default class VWBLayoutItem {
   h = 2;
 
   constructor(data: Partial<VWBLayoutItem> & { x: number; y: number }) {
+    merge(this, data);
     this.x = data.x;
     this.y = data.y;
-    if (data.i !== undefined) this.i = data.i;
-    if (data.w !== undefined) this.w = data.w;
-    if (data.h !== undefined) this.h = data.h;
   }
 }

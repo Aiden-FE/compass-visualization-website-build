@@ -1,12 +1,12 @@
-import { VWBLayoutItem, VWBWidget } from '@compass-aiden/vwb-core';
+import { VWBWidget } from '@compass-aiden/vwb-core';
 import useComponent from '@/hooks/use-component';
 
 export interface VWBWidgetRendererProps {
-  layoutItem: VWBLayoutItem;
-  widget: VWBWidget;
+  widgetConfig: VWBWidget;
 }
 
-export default function VWBWidgetRenderer({ widget }: VWBWidgetRendererProps) {
-  const { Component } = useComponent(widget.material);
-  return Component && <Component {...widget.props} />;
+export default function VWBWidgetRenderer({ widgetConfig }: VWBWidgetRendererProps) {
+  const { Component } = useComponent(widgetConfig.material);
+  // eslint-disable-next-line react/jsx-props-no-spreading
+  return Component && <Component {...widgetConfig.props} />;
 }

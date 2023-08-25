@@ -1,5 +1,5 @@
-import { IVWBMaterial } from '@/interfaces/common';
 import merge from 'lodash-es/merge';
+import { IVWBMaterial } from '@/interfaces/common';
 
 export default class VWBWidget {
   /** 组件id,等同于layoutItem.i */

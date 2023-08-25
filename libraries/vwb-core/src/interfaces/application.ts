@@ -1,8 +1,8 @@
 import merge from 'lodash-es/merge';
-import VWBPage from '@/interfaces/page';
 import { nanoid } from 'nanoid';
+import VWBPage from '@/interfaces/page';
 
-/** 应用配置*/
+/** 应用配置 */
 export default class VWBApplication {
   /** 页面配置 */
   pages: VWBPage[] = [];
@@ -31,14 +31,6 @@ export default class VWBApplication {
     if (app) {
       merge(this, app);
     }
-  }
-
-  /** 已选择页面 */
-  get selectedPage() {
-    if (!this.selectedPageId) {
-      return undefined;
-    }
-    return this.pages.find((page) => page.id === this.selectedPageId);
   }
 
   /** 合并配置项 */

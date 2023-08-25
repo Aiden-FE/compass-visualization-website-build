@@ -66,6 +66,7 @@ export default defineConfig({
   build: {
     rollupOptions: {
       external: builtinModules.concat(Object.keys(pkg.peerDependencies)),
+      output: {},
     },
     lib: {
       entry: path.resolve(__dirname, './src/main.ts'),

@@ -8,9 +8,9 @@ export interface ICentralSchedulerOption {
 }
 
 /** React本地组件, 本地组件需要提前通过renderer包导出的注册器进行注册 */
-export interface IVWBReactComponentPresetMaterial {
+export interface IVWBReactComponentLocalMaterial {
   type: 'react-component';
-  from: 'preset';
+  from: 'local';
   componentName: string;
 }
 
@@ -31,7 +31,7 @@ export interface IVWBReactComponentRemoteMaterial {
 }
 
 /** 组件物料 */
-export type IVWBMaterial = IVWBReactComponentPresetMaterial | IVWBReactComponentRemoteMaterial;
+export type IVWBMaterial = IVWBReactComponentLocalMaterial | IVWBReactComponentRemoteMaterial;
 
 export type DeepPartial<T> = {
   [P in keyof T]?: T[P] extends Array<infer U>

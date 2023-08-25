@@ -1,6 +1,6 @@
-import { VWBApplication, VWBLayoutItem, VWBPage } from '@compass-aiden/vwb-core';
+import { VWBApplication, VWBLayoutItem, VWBPage, VWBWidget } from '@compass-aiden/vwb-core';
 import { CommonComponentProps } from '@/interfaces';
-import VWBRenderer from '@compass-aiden/vwb-renderer';
+import { VWBAppRenderer } from '@compass-aiden/vwb-renderer';
 import '@compass-aiden/vwb-renderer/dist/style.css';
 import { useAppSelector } from '@/stores';
 import styles from './designer-content.module.scss';
@@ -13,20 +13,34 @@ interface DesignerContentProps {
 function DesignerContent({ appConfig, onUpdatePage }: CommonComponentProps<DesignerContentProps>) {
   const defaultCreateLayoutItem = useAppSelector((state) => state.designer.defaultCreateLayoutItem);
 
-  function onDrop(layoutItem: VWBLayoutItem) {
-    const layouts = appConfig.selectedPage?.layouts || [];
+  function onDrop(item: VWBLayoutItem) {
+    const page = appConfig.pages.find((page) => page.id === appConfig.selectedPageId);
+    const layouts = page?.layouts || [];
+    const layoutItem = new VWBLayoutItem({ ...item, i: undefined });
+    const widget = new VWBWidget({
+      id: layoutItem.i,
+      material: {
+        componentName: 'text',
+        from: 'local',
+        type: 'react-component',
+      },
+    });
     onUpdatePage({
-      layouts: layouts.concat([new VWBLayoutItem({ ...layoutItem, i: undefined })]),
+      layouts: layouts.concat([layoutItem]),
+      widgets: (page?.widgets || []).concat(widget),
     });
   }
 
   return (
     <div className={`overflow-auto bg-[#f5f5f5] ${styles[`vwb-designer-content_${appConfig.platform}`]}`}>
-      <VWBRenderer
+      {/* className="" */}
+      <VWBAppRenderer
         appConfig={appConfig}
-        onDrop={(item) => onDrop(item)}
-        droppingItem={defaultCreateLayoutItem}
-        className="border-dashed border-1 border-[var(--vwb-primary-color)]"
+        pageProps={{
+          droppingItem: defaultCreateLayoutItem,
+          onDrop: (item) => onDrop(item),
+          className: 'min-h-full bg-white border-dashed border-1 border-[var(--vwb-primary-color)]',
+        }}
       />
     </div>
   );

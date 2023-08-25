@@ -9,12 +9,12 @@ declare global {
 }
 
 export default function useComponent(materialMeta: IVWBMaterial) {
-  const [Component, setComponent] = useState<JSX.Element | null>(null);
+  const [Component, setComponent] = useState<(() => JSX.Element) | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const localComponent = getComponentByName(materialMeta.componentName) || null;
-    if (localComponent || materialMeta.from === 'preset') {
+    if (localComponent || materialMeta.from === 'local') {
       setComponent(localComponent);
       setLoading(false);
     }

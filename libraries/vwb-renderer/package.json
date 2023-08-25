@@ -4,7 +4,7 @@
   "version": "0.1.1-29",
   "type": "module",
   "main": "dist/vwb-renderer.es.js",
-  "types": "types/vwb-renderer.d.ts",
+  "types": "types/main.d.ts",
   "scripts": {
     "dev": "vite build --watch",
     "serve": "vite",
@@ -68,15 +68,16 @@
     "rollup-plugin-visualizer": "~5.9.2",
     "react-resizable": "~3.0.5",
     "@types/react-grid-layout": "~1.3.2",
-    "vite-plugin-dts": "~3.5.1"
+    "vite-plugin-dts": "~3.5.1",
+    "@compass-aiden/vwb-core": "workspace:*"
   },
   "peerDependencies": {
     "react": ">=18",
-    "react-dom": ">=18"
+    "react-dom": ">=18",
+    "@compass-aiden/vwb-core": ">=0.1"
   },
   "dependencies": {
     "react-grid-layout": "~1.3.4",
-    "@compass-aiden/vwb-core": "workspace:*",
     "@compass-aiden/styles": "~1.1.1"
   }
 }

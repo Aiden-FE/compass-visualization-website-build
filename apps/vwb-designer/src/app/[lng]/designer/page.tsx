@@ -21,20 +21,20 @@ function DesignerPage({ params: { lng } }: CommonPageProps) {
 
   useEffect(() => {
     const defaultPage = new VWBPage();
-    setCentralScheduler(
-      new DesignerCentralScheduler({
-        logLevel: IS_DEV ? 'debug' : 'log',
-        defaultAppConfig: new VWBApplication({
-          pages: [defaultPage],
-          selectedPageId: defaultPage.id,
-        }),
+    const designerCentralScheduler = new DesignerCentralScheduler({
+      logLevel: IS_DEV ? 'debug' : 'log',
+      defaultAppConfig: new VWBApplication({
+        mode: 'editable',
+        pages: [defaultPage],
+        selectedPageId: defaultPage.id,
       }),
-    );
+    });
+    setCentralScheduler(designerCentralScheduler);
 
     return () => {
-      centralScheduler?.destroy();
+      designerCentralScheduler?.destroy();
     };
-  }, [DesignerCentralScheduler]);
+  }, []);
 
   useEffect(() => {
     const sub = centralScheduler?.change.subscribe((appConf) => setAppConfig(appConf));

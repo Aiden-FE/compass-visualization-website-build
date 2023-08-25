@@ -1,6 +1,6 @@
-import VWBLayoutItem from '@/interfaces/layout-item';
 import merge from 'lodash-es/merge';
 import { nanoid } from 'nanoid';
+import VWBLayoutItem from '@/interfaces/layout-item';
 import VWBWidget from '@/interfaces/widget';
 
 export default class VWBPage {
@@ -12,6 +12,9 @@ export default class VWBPage {
 
   /** 组件列表 */
   widgets: VWBWidget[] = [];
+
+  /** 页面布局断点 */
+  // breakpoints: { [P: string]: number } = { lg: 768, md: 375, sm: 0 };
 
   constructor(page?: Partial<VWBPage>) {
     if (page) {
