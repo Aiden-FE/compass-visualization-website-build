@@ -1,5 +1,5 @@
-import { VWBApplication, VWBLayoutItem, VWBPage, VWBWidget } from '@compass-aiden/vwb-core';
-import { CommonComponentProps } from '@/interfaces';
+import { IVWBMaterial, VWBApplication, VWBLayoutItem, VWBPage, VWBWidget } from '@compass-aiden/vwb-core';
+import { CommonComponentProps, MaterialConfig } from '@/interfaces';
 import { VWBAppRenderer } from '@compass-aiden/vwb-renderer';
 import '@compass-aiden/vwb-renderer/dist/style.css';
 import { useAppSelector } from '@/stores';
@@ -14,16 +14,18 @@ function DesignerContent({ appConfig, onUpdatePage }: CommonComponentProps<Desig
   const defaultCreateLayoutItem = useAppSelector((state) => state.designer.defaultCreateLayoutItem);
 
   function onDrop(item: VWBLayoutItem) {
-    const page = appConfig.pages.find((page) => page.id === appConfig.selectedPageId);
+    const page = appConfig.pages.find((currentPage) => currentPage.id === appConfig.selectedPageId);
     const layouts = page?.layouts || [];
     const layoutItem = new VWBLayoutItem({ ...item, i: undefined });
+    const material: Partial<MaterialConfig & { i: string }> & IVWBMaterial = {
+      ...defaultCreateLayoutItem,
+    };
+    delete material.w;
+    delete material.h;
+    delete material.i;
     const widget = new VWBWidget({
       id: layoutItem.i,
-      material: {
-        componentName: 'text',
-        from: 'local',
-        type: 'react-component',
-      },
+      material,
     });
     onUpdatePage({
       layouts: layouts.concat([layoutItem]),
@@ -33,7 +35,6 @@ function DesignerContent({ appConfig, onUpdatePage }: CommonComponentProps<Desig
 
   return (
     <div className={`overflow-auto bg-[#f5f5f5] ${styles[`vwb-designer-content_${appConfig.platform}`]}`}>
-      {/* className="" */}
       <VWBAppRenderer
         appConfig={appConfig}
         pageProps={{

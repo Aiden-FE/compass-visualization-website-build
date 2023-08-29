@@ -7,6 +7,6 @@ export interface VWBWidgetRendererProps {
 
 export default function VWBWidgetRenderer({ widgetConfig }: VWBWidgetRendererProps) {
   const { Component } = useComponent(widgetConfig.material);
-  // eslint-disable-next-line react/jsx-props-no-spreading
-  return Component && <Component {...widgetConfig.props} />;
+  // @ts-ignore
+  return Component && <Component widget={widgetConfig} />;
 }

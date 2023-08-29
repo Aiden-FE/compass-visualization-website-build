@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import { VWBApplication, DesignerCentralScheduler, VWBPage } from '@compass-aiden/vwb-core';
 import { IS_DEV } from '@/config';
 import { CommonPageProps } from '@/interfaces';
+import InstallMaterials from '@/components/materials';
 import DesignerHeader from './components/designer-header';
 import DesignerSidebar from './components/designer-sidebar';
 import DesignerSettings from './components/designer-settings';
@@ -30,6 +31,7 @@ function DesignerPage({ params: { lng } }: CommonPageProps) {
       }),
     });
     setCentralScheduler(designerCentralScheduler);
+    InstallMaterials();
 
     return () => {
       designerCentralScheduler?.destroy();

@@ -1,4 +1,5 @@
 import ThemeConfig from './theme.json';
+import Materials from './materials';
 
 export const IS_DEV = process.env.NODE_ENV === 'development';
 
@@ -11,4 +12,4 @@ export enum AvailableTheme {
   DARK = 'dark',
 }
 
-export { ThemeConfig };
+export { ThemeConfig, Materials };

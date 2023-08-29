@@ -3,12 +3,10 @@ import styles from './designer-sidebar.module.scss';
 import DesignerSidebarMenus from './designer-sidebar-menus';
 import DesignerSidebarMaterials from './designer-sidebar-materials';
 
-function DesignerSidebarFixed(
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  params: CommonComponentProps<{
-    onToggleSidebarMode: () => void;
-  }>,
-) {
+// eslint-disable-next-line no-empty-pattern
+function DesignerSidebarFixed({}: CommonComponentProps<{
+  onToggleSidebarMode: () => void;
+}>) {
   return (
     <div className={styles['vwb-designer-sidebar__fixed']}>
       <div className={styles['vwb-designer-sidebar__menus']}>

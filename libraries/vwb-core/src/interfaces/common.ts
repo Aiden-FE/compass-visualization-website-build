@@ -7,18 +7,30 @@ export interface ICentralSchedulerOption {
   logSubject?: string;
 }
 
+export interface IVWBBaseMaterial {
+  /** 物料类型 */
+  type: 'react-component';
+  /** 组件名 */
+  componentName: string;
+  /**
+   * 组件来源
+   *
+   * - local 采用registerComponent注册的本地组件
+   * - remote 远程组件
+   */
+  from: 'local' | 'remote';
+}
+
 /** React本地组件, 本地组件需要提前通过renderer包导出的注册器进行注册 */
-export interface IVWBReactComponentLocalMaterial {
+export interface IVWBReactComponentLocalMaterial extends IVWBBaseMaterial {
   type: 'react-component';
   from: 'local';
-  componentName: string;
 }
 
 /** React远程组件 */
-export interface IVWBReactComponentRemoteMaterial {
+export interface IVWBReactComponentRemoteMaterial extends IVWBBaseMaterial {
   type: 'react-component';
   from: 'remote';
-  componentName: string;
   url: string;
   /**
    * @description umd的导出名

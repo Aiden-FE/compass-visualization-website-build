@@ -33,7 +33,7 @@ export default function VWBPageRenderer({ pageConfig, droppingItem, onDrop, clas
 
   return (
     <ResponsiveGridLayout
-      className={`vwb-pr ${className ? className : ''}`}
+      className={`vwb-pr ${className || ''}`}
       layouts={{
         lg: pageConfig.layouts,
         md: pageConfig.layouts,

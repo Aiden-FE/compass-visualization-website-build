@@ -12,17 +12,21 @@ export default function VWBAppRenderer({ appConfig, pageProps }: VWBAppRendererP
   const [pageConfig, setPageConfig] = useState<VWBPage>();
   useEffect(() => {
     if (appConfig.selectedPageId) {
-      const pageConf = appConfig.pages.find((page) => page.id === appConfig.selectedPageId);
+      const pageConf = appConfig.pages.find((page: VWBPage) => page.id === appConfig.selectedPageId);
       setPageConfig(pageConf);
     }
     return () => setPageConfig(undefined);
   }, [appConfig]);
+
+  const ContextValue = useMemo(() => {
+    return {
+      appConfig,
+    };
+  }, [appConfig]);
+
   return (
-    <AppContext.Provider
-      value={{
-        appConfig,
-      }}
-    >
+    <AppContext.Provider value={ContextValue}>
+      {/* eslint-disable-next-line react/jsx-props-no-spreading */}
       {pageConfig && <VWBPageRenderer pageConfig={pageConfig} {...(pageProps || {})} />}
     </AppContext.Provider>
   );

@@ -9,6 +9,7 @@ export enum AvailableLanguagesNS {
   COMMON = 'common',
   LOGIN = 'login',
   DESIGNER = 'designer',
+  MATERIALS = 'materials',
 }
 
 export const LanguagesMapping = [

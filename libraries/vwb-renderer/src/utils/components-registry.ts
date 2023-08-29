@@ -3,7 +3,7 @@ import { JSX } from 'react';
 const ComponentsRegistry = new Map<string, () => JSX.Element>();
 
 /** 注册renderer可用组件 */
-export function registerComponent(componentName: string, component: () => React.JSX.Element) {
+export function registerComponent(componentName: string, component: () => JSX.Element) {
   if (!ComponentsRegistry.has(componentName)) {
     ComponentsRegistry.set(componentName, component);
   }
