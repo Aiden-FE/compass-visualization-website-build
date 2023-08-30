@@ -17,15 +17,11 @@ function DesignerContent({ appConfig, onUpdatePage }: CommonComponentProps<Desig
     const page = appConfig.pages.find((currentPage) => currentPage.id === appConfig.selectedPageId);
     const layouts = page?.layouts || [];
     const layoutItem = new VWBLayoutItem({ ...item, i: undefined });
-    const material: Partial<MaterialConfig & { i: string }> & IVWBMaterial = {
-      ...defaultCreateLayoutItem,
-    };
-    delete material.w;
-    delete material.h;
-    delete material.i;
+
     const widget = new VWBWidget({
       id: layoutItem.i,
-      material,
+      material: defaultCreateLayoutItem.material,
+      configuration: defaultCreateLayoutItem.getDefaultConfig({ data: { value: 'Hello world' } }),
     });
     onUpdatePage({
       layouts: layouts.concat([layoutItem]),
@@ -33,14 +29,19 @@ function DesignerContent({ appConfig, onUpdatePage }: CommonComponentProps<Desig
     });
   }
 
+  function onSelected(params: unknown) {
+    console.log('Selected: ', params);
+  }
+
   return (
     <div className={`overflow-auto bg-[#f5f5f5] ${styles[`vwb-designer-content_${appConfig.platform}`]}`}>
       <VWBAppRenderer
         appConfig={appConfig}
         pageProps={{
-          droppingItem: defaultCreateLayoutItem,
+          droppingItem: defaultCreateLayoutItem?.layout,
           onDrop: (item) => onDrop(item),
           className: 'min-h-full bg-white border-dashed border-1 border-[var(--vwb-primary-color)]',
+          onSelect: onSelected,
         }}
       />
     </div>

@@ -28,10 +28,10 @@ function DesignerSidebarMaterials({ lang }: CommonComponentProps) {
             draggable
             unselectable="on"
             onDragStart={(e) => onDragStart(e, item)}
-            key={item.componentName}
+            key={item.material.componentName}
             style={gridStyle}
           >
-            {t(item.componentName)}
+            {t(item.material.componentName)}
           </Card.Grid>
         ))}
       </Card>

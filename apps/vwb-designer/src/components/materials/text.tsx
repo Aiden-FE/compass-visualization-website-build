@@ -1,12 +1,22 @@
-interface TextProps {
-  text?: string;
+import { DeepPartial, VWBWidget, VWBWidgetConfiguration } from '@compass-aiden/vwb-core';
+import merge from 'lodash-es/merge';
+
+export class VWBTextWidgetConfiguration extends VWBWidgetConfiguration<{ value: string }> {
+  constructor(config?: DeepPartial<VWBTextWidgetConfiguration>) {
+    super();
+    merge(this, config);
+  }
 }
 
-export default function Text({ text }: TextProps) {
+interface TextProps {
+  widget?: VWBWidget<VWBTextWidgetConfiguration>;
+}
+
+export default function Text({ widget }: TextProps) {
   return (
     <>
       This is Text material component.
-      {text}
+      {widget?.configuration.data.value}
     </>
   );
 }

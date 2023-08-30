@@ -6,11 +6,13 @@ export default class VWBWidget<Config extends VWBWidgetConfiguration = VWBWidget
   /** 组件id,等同于layoutItem.i */
   id: string;
 
+  type = 'widget' as const;
+
   /** 使用的物料 */
   material: IVWBMaterial;
 
   /** 配置项 */
-  configuation: Config = new VWBWidgetConfiguration() as Config;
+  configuration: Config = new VWBWidgetConfiguration() as Config;
 
   constructor(widget: Partial<VWBWidget> & Required<Pick<VWBWidget, 'material' | 'id'>>) {
     merge(this, widget);

@@ -1,6 +1,6 @@
 'use client';
 
-import { ReactNode, useEffect } from 'react';
+import React, { ReactNode, useEffect } from 'react';
 import { initializeThemeAsync, useAppDispatch } from '@/stores';
 import { CommonComponentProps } from '@/interfaces';
 
@@ -14,6 +14,9 @@ function InitClientWrap({
   useEffect(() => {
     // @ts-ignore
     dispatch(initializeThemeAsync());
+    if (!window.React) {
+      window.React = React;
+    }
   });
 
   return children;

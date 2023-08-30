@@ -1,26 +1,43 @@
 import { MaterialConfig } from '@/interfaces';
+import { VWBTextWidgetConfiguration } from '@/components/materials/text';
+import { DeepPartial } from '@compass-aiden/vwb-core';
 
 const Materials: MaterialConfig[] = [
   {
-    type: 'react-component',
-    from: 'local',
-    componentName: 'Text',
-    w: 2,
-    h: 1,
+    material: {
+      type: 'react-component',
+      from: 'local',
+      componentName: 'Text',
+    },
+    layout: {
+      w: 2,
+      h: 1,
+    },
+    getDefaultConfig: (config?: DeepPartial<VWBTextWidgetConfiguration>) => new VWBTextWidgetConfiguration(config),
   },
   {
-    type: 'react-component',
-    from: 'local',
-    componentName: 'Text2',
-    w: 2,
-    h: 1,
+    material: {
+      type: 'react-component',
+      from: 'local',
+      componentName: 'Text2',
+    },
+    layout: {
+      w: 2,
+      h: 1,
+    },
+    getDefaultConfig: (config?: DeepPartial<VWBTextWidgetConfiguration>) => new VWBTextWidgetConfiguration(config),
   },
   {
-    type: 'react-component',
-    from: 'local',
-    componentName: 'Text3',
-    w: 2,
-    h: 1,
+    material: {
+      type: 'react-component',
+      from: 'local',
+      componentName: 'Text3',
+    },
+    layout: {
+      w: 2,
+      h: 1,
+    },
+    getDefaultConfig: (config?: DeepPartial<VWBTextWidgetConfiguration>) => new VWBTextWidgetConfiguration(config),
   },
 ];
 

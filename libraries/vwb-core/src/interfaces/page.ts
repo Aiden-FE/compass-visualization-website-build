@@ -13,6 +13,8 @@ export default class VWBPage {
   /** 组件列表 */
   widgets: VWBWidget[] = [];
 
+  type = 'page' as const;
+
   /** 页面布局断点 */
   // breakpoints: { [P: string]: number } = { lg: 768, md: 375, sm: 0 };
 

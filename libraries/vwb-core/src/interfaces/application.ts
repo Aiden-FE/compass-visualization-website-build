@@ -10,6 +10,8 @@ export default class VWBApplication {
   /** 应用id */
   id = nanoid();
 
+  type = 'application' as const;
+
   /** 目标平台 */
   platform: 'pc' | 'tablet' | 'mobile' = 'pc';
 
