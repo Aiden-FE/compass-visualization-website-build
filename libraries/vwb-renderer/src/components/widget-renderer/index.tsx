@@ -1,6 +1,6 @@
 import { VWBWidget } from '@compass-aiden/vwb-core';
-import useComponent from '@/hooks/use-component';
 import { useContext, MouseEvent } from 'react';
+import useComponent from '@/hooks/use-component';
 import { AppContext } from '@/hooks';
 
 export interface VWBWidgetRendererProps {
@@ -13,6 +13,7 @@ export default function VWBWidgetRenderer({ widgetConfig, onSelect }: VWBWidgetR
   const { Component } = useComponent(widgetConfig.material);
   const appContext = useContext(AppContext);
   const containerRef = useRef<HTMLDivElement>(null);
+  const isEditable = useMemo(() => appContext.appConfig.mode === 'editable', [appContext.appConfig]);
 
   function onSelectWidget(e: MouseEvent) {
     e.stopPropagation();
@@ -24,11 +25,12 @@ export default function VWBWidgetRenderer({ widgetConfig, onSelect }: VWBWidgetR
   }
 
   return (
+    // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
     <div
       ref={containerRef}
       data-widget-id={widgetConfig.id}
       className={`vwb-wr w-full h-full vwb-wr__material_${widgetConfig.material.componentName}`}
-      onClick={appContext.appConfig.mode === 'editable' ? (e) => onSelectWidget(e) : undefined}
+      onClick={isEditable ? (e) => onSelectWidget(e) : undefined}
     >
       {/* @ts-ignore */}
       {Component && <Component widget={widgetConfig} />}

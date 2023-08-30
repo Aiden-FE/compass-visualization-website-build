@@ -2,9 +2,9 @@ import { VWBLayoutItem, VWBPage, VWBWidget } from '@compass-aiden/vwb-core';
 import { Responsive, WidthProvider } from 'react-grid-layout';
 import 'react-grid-layout/css/styles.css';
 import 'react-resizable/css/styles.css';
+import { MouseEvent } from 'react';
 import VWBWidgetRenderer from '@/components/widget-renderer';
 import { AppContext } from '@/hooks';
-import { MouseEvent } from 'react';
 
 export interface VWBPageRendererProps {
   pageConfig: VWBPage;
@@ -30,6 +30,7 @@ export default function VWBPageRenderer({
     return pageConfig.layouts.map((item) => {
       const widgetConfig = pageConfig.widgets.find((widget) => widget.id === item.i);
       if (!widgetConfig) {
+        // eslint-disable-next-line no-console
         console.error(`Not found widget by ${item.i}`);
       }
       return widgetConfig ? (
@@ -41,7 +42,7 @@ export default function VWBPageRenderer({
         </div>
       ) : null;
     });
-  }, [pageConfig]);
+  }, [pageConfig, isEditable, onSelect]);
 
   const ResponsiveGridLayout = useMemo(() => WidthProvider(Responsive), []);
 
@@ -55,6 +56,7 @@ export default function VWBPageRenderer({
   }
 
   return (
+    // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
     <div
       className={`vwb-pr w-full h-full ${className || ''}`}
       ref={containerRef}

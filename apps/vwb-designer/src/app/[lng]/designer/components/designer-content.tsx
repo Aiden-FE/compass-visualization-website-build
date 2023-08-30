@@ -1,5 +1,5 @@
-import { IVWBMaterial, VWBApplication, VWBLayoutItem, VWBPage, VWBWidget } from '@compass-aiden/vwb-core';
-import { CommonComponentProps, MaterialConfig } from '@/interfaces';
+import { VWBApplication, VWBLayoutItem, VWBPage, VWBWidget } from '@compass-aiden/vwb-core';
+import { CommonComponentProps } from '@/interfaces';
 import { VWBAppRenderer } from '@compass-aiden/vwb-renderer';
 import '@compass-aiden/vwb-renderer/dist/style.css';
 import { useAppSelector } from '@/stores';
@@ -30,6 +30,7 @@ function DesignerContent({ appConfig, onUpdatePage }: CommonComponentProps<Desig
   }
 
   function onSelected(params: unknown) {
+    // eslint-disable-next-line no-console
     console.log('Selected: ', params);
   }
 
