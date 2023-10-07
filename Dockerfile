@@ -7,7 +7,7 @@ FROM node:18.15.0-slim
 MAINTAINER Aiden_FE <Aiden_FE@outlook.com>
 
 ENV NODE_ENV production
-ENV PORT 13000
+ENV PORT 3002
 
 ARG WORKDIR_DIR=/root/compass-vwb
 
