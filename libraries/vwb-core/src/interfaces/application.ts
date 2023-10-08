@@ -15,9 +15,6 @@ export default class VWBApplication {
   /** 目标平台 */
   platform: 'pc' | 'tablet' | 'mobile' = 'pc';
 
-  /** 语言 */
-  language: string = 'zh-CN';
-
   /**
    * @description 模式
    *
@@ -26,8 +23,8 @@ export default class VWBApplication {
    */
   mode: 'preview' | 'editable' = 'preview';
 
-  /** 已选择页面的id */
-  selectedPageId?: string;
+  /** 语言 */
+  language?: string;
 
   constructor(app?: Partial<VWBApplication>) {
     if (app) {

@@ -1,0 +1,40 @@
+{
+  "type": "object",
+  "description": "应用配置数据",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "应用唯一ID"
+    },
+    "type": {
+      "type": "string",
+      "const": "application",
+      "description": "声明为应用类型的数据",
+      "default": "application"
+    },
+    "platform": {
+      "type": "string",
+      "enum": ["pc", "tablet", "mobile"],
+      "description": "面向的平台",
+      "default": "pc"
+    },
+    "language": {
+      "type": "string",
+      "description": "适用的语言",
+      "nullable": true
+    },
+    "mode": {
+      "type": "string",
+      "description": "编辑或预览模式",
+      "enum": ["preview", "editable"],
+      "default": "preview"
+    },
+    "pages": {
+      "type": "array",
+      "description": "页面配置数据",
+      "items": {
+        "$ref": "page.schema.json"
+      }
+    }
+  }
+}

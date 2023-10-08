@@ -1,0 +1,21 @@
+{
+  "type": "object",
+  "description": "组件配置数据",
+  "properties": {
+    "data": {
+      "type": "object",
+      "properties": {},
+      "additionalProperties": true
+    },
+    "attributes": {
+      "type": "object",
+      "properties": {},
+      "additionalProperties": true
+    },
+    "styles": {
+      "type": "object",
+      "properties": {},
+      "additionalProperties": true
+    }
+  }
+}

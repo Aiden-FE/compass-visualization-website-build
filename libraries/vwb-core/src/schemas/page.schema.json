@@ -1,0 +1,44 @@
+{
+  "type": "object",
+  "description": "页面配置数据",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "页面唯一ID"
+    },
+    "type": {
+      "type": "string",
+      "const": "page",
+      "description": "标识为页面配置数据"
+    },
+    "layouts": {
+      "type": "array",
+      "description": "布局配置数据",
+      "items": {
+        "i": {
+          "type": "string",
+          "description": "唯一ID"
+        },
+        "x": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "y": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "w": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "h": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "widgets": {
+      "$ref": "widget.schema.json"
+    }
+  }
+}

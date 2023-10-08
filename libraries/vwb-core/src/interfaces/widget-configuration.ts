@@ -1,3 +1,6 @@
+import { DeepPartial } from '@/interfaces/common';
+import merge from 'lodash-es/merge';
+
 export default class VWBWidgetConfiguration<
   Data extends object = {},
   Attributes extends object = {},
@@ -11,4 +14,17 @@ export default class VWBWidgetConfiguration<
 
   /** 样式数据 */
   styles: Styles = {} as Styles;
+
+  constructor(widgetConfig?: DeepPartial<VWBWidgetConfiguration>) {
+    if (widgetConfig) {
+      merge(this, widgetConfig);
+    }
+  }
+
+  /** 合并配置项 */
+  static merge(...settings: DeepPartial<VWBWidgetConfiguration>[]): VWBWidgetConfiguration {
+    const newSetting = new VWBWidgetConfiguration();
+
+    return merge(newSetting, ...settings);
+  }
 }

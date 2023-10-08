@@ -1,0 +1,67 @@
+{
+  "type": "object",
+  "description": "组件数据",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "组件ID, 等同于layout.i"
+    },
+    "type": {
+      "type": "string",
+      "const": "widget",
+      "default": "widget",
+      "description": "标识为组件数据"
+    },
+    "material": {
+      "type": "object",
+      "description": "使用的物料信息",
+      "oneOf": [
+        {
+          "type": "object",
+          "description": "本地react组件",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "react-component"
+            },
+            "componentName": {
+              "type": "string"
+            },
+            "from": {
+              "type": "string",
+              "const": "local"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "description": "远程react组件",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "react-component"
+            },
+            "componentName": {
+              "type": "string"
+            },
+            "from": {
+              "type": "string",
+              "const": "remote"
+            },
+            "url": {
+              "type": "string"
+            },
+            "exportName": {
+              "type": "string",
+              "nullable": true,
+              "default": "default"
+            }
+          }
+        }
+      ]
+    },
+    "configuration": {
+      "$ref": "widget-config.schema.json"
+    }
+  }
+}
