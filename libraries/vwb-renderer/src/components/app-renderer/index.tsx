@@ -30,7 +30,7 @@ const VWBAppRenderer = forwardRef<VWBAppRendererRef, VWBAppRendererProps>(
         setSelectPageId?.(undefined);
         setPageConfig(undefined);
       };
-    }, [appConfig, selectedPageId]);
+    }, [appConfig, selectedPageId, setSelectPageId]);
 
     function getCurrentPageConfig(): VWBPage | undefined {
       return pageConfig;
