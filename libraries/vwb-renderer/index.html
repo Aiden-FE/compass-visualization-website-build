@@ -13,7 +13,7 @@
       import React, { createElement } from 'react';
       import { createRoot } from 'react-dom/client';
       import { VWBApplication, VWBPage, VWBWidget } from '@compass-aiden/vwb-core';
-      import { VWBAppRenderer, registerComponent } from '/src/main';
+      import { VWBAppRenderer } from '/src/main';
 
       window.React = React;
 
@@ -44,14 +44,12 @@
       });
       const appConfig = new VWBApplication({
         pages: [page],
-        selectedPageId: page.id,
       });
-
-      // registerComponent('text', createElement(Text, { text: 'Hi, this is Text component' }));
 
       const root = createRoot(document.querySelector('#root'));
 
       root.render(createElement(VWBAppRenderer, { appConfig }));
+      console.log(appConfig);
     </script>
   </body>
 </html>

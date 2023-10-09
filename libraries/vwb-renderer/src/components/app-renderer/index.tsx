@@ -1,33 +1,52 @@
-import { VWBApplication, VWBPage } from '@compass-aiden/vwb-core';
-import { useEffect, useState } from 'react';
+import { VWBApplication, VWBPage, applicationValidate } from '@compass-aiden/vwb-core';
 import VWBPageRenderer, { VWBPageRendererProps } from '@/components/page-renderer';
-import AppContext from '@/hooks/use-app-context';
 
 export interface VWBAppRendererProps {
   appConfig: VWBApplication;
+  selectedPageId?: string;
+  setSelectPageId?: (id?: string) => void;
   pageProps?: Omit<VWBPageRendererProps, 'pageConfig'>;
 }
 
-export default function VWBAppRenderer({ appConfig, pageProps }: VWBAppRendererProps) {
-  const [pageConfig, setPageConfig] = useState<VWBPage>();
-  useEffect(() => {
-    if (appConfig.selectedPageId) {
-      const pageConf = appConfig.pages.find((page: VWBPage) => page.id === appConfig.selectedPageId);
-      setPageConfig(pageConf);
-    }
-    return () => setPageConfig(undefined);
-  }, [appConfig]);
-
-  const ContextValue = useMemo(() => {
-    return {
-      appConfig,
-    };
-  }, [appConfig]);
-
-  return (
-    <AppContext.Provider value={ContextValue}>
-      {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-      {pageConfig && <VWBPageRenderer pageConfig={pageConfig} {...(pageProps || {})} />}
-    </AppContext.Provider>
-  );
+export interface VWBAppRendererRef {
+  getCurrentPageConfig: () => VWBPage | undefined;
 }
+
+const VWBAppRenderer = forwardRef<VWBAppRendererRef, VWBAppRendererProps>(
+  ({ appConfig, pageProps, selectedPageId, setSelectPageId }, ref) => {
+    const [pageConfig, setPageConfig] = useState<VWBPage | undefined>();
+
+    useEffect(() => {
+      if (!applicationValidate(appConfig)) {
+        throw new Error('The acquired app data is not the expected data.');
+      }
+      if (selectedPageId) {
+        const pageConf = appConfig.pages.find((page: VWBPage) => page.id === selectedPageId);
+        setPageConfig(pageConf);
+      } else if (appConfig.pages[0]) {
+        setSelectPageId?.(appConfig.pages[0]?.id);
+      }
+      return () => {
+        setSelectPageId?.(undefined);
+        setPageConfig(undefined);
+      };
+    }, [appConfig, selectedPageId]);
+
+    function getCurrentPageConfig(): VWBPage | undefined {
+      return pageConfig;
+    }
+
+    useImperativeHandle(ref, () => ({
+      getCurrentPageConfig,
+    }));
+
+    return (
+      <>
+        {/* eslint-disable-next-line react/jsx-props-no-spreading */}
+        {pageConfig && <VWBPageRenderer mode={appConfig.mode} pageConfig={pageConfig} {...(pageProps || {})} />}
+      </>
+    );
+  },
+);
+
+export default VWBAppRenderer;

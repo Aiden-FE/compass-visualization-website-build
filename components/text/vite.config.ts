@@ -71,4 +71,7 @@ export default defineConfig({
       formats: ['umd', 'es'],
     },
   },
+  server: {
+    port: 5174,
+  },
 });

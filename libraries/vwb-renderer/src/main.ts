@@ -5,3 +5,4 @@ import '@/assets/styles/global.scss';
 
 export * from './utils/components-registry';
 export { VWBAppRenderer, VWBPageRenderer, VWBWidgetRenderer };
+export type { VWBAppRendererRef } from './components/app-renderer';

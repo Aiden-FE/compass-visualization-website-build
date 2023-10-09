@@ -1,19 +1,24 @@
-import { VWBWidget } from '@compass-aiden/vwb-core';
-import { useContext, MouseEvent } from 'react';
+import { VWBApplication, VWBWidget, widgetValidate } from '@compass-aiden/vwb-core';
+import { MouseEvent, useEffect } from 'react';
 import useComponent from '@/hooks/use-component';
-import { AppContext } from '@/hooks';
 
 export interface VWBWidgetRendererProps {
   widgetConfig: VWBWidget;
+  mode?: VWBApplication['mode'];
   /** 当组件被选中时触发,仅编辑态有效 */
   onSelect?: (params: { config: VWBWidget; ref: HTMLDivElement | null; event: MouseEvent }) => void;
 }
 
-export default function VWBWidgetRenderer({ widgetConfig, onSelect }: VWBWidgetRendererProps) {
+export default function VWBWidgetRenderer({ widgetConfig, onSelect, mode = 'preview' }: VWBWidgetRendererProps) {
   const { Component } = useComponent(widgetConfig.material);
-  const appContext = useContext(AppContext);
   const containerRef = useRef<HTMLDivElement>(null);
-  const isEditable = useMemo(() => appContext.appConfig.mode === 'editable', [appContext.appConfig]);
+  const isEditable = useMemo(() => mode === 'editable', [mode]);
+
+  useEffect(() => {
+    if (!widgetValidate(widgetConfig)) {
+      throw new Error('The acquired widget data is not the expected data.');
+    }
+  }, [widgetConfig]);
 
   function onSelectWidget(e: MouseEvent) {
     e.stopPropagation();

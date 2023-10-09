@@ -14,6 +14,7 @@ import DesignerContent from './components/designer-content';
 function DesignerPage({ params: { lng } }: CommonPageProps) {
   const [centralScheduler, setCentralScheduler] = useState<DesignerCentralScheduler>();
   const [appConfig, setAppConfig] = useState<VWBApplication>();
+  const [selectedPageId, setSelectPageId] = useState<string>();
 
   function onSubmit(config: VWBApplication) {
     // eslint-disable-next-line no-console
@@ -27,7 +28,6 @@ function DesignerPage({ params: { lng } }: CommonPageProps) {
       defaultAppConfig: new VWBApplication({
         mode: 'editable',
         pages: [defaultPage],
-        selectedPageId: defaultPage.id,
       }),
     });
     setCentralScheduler(designerCentralScheduler);
@@ -53,13 +53,15 @@ function DesignerPage({ params: { lng } }: CommonPageProps) {
       <Layout.Content className="flex relative">
         <DesignerSidebar />
         <main className="flex-1 overflow-auto bg-slate-200 flex justify-center p-4">
-          {centralScheduler && appConfig?.selectedPageId ? (
+          {centralScheduler && appConfig ? (
             <DesignerContent
               appConfig={appConfig}
+              selectedPageId={selectedPageId}
+              setSelectPageId={setSelectPageId}
               onUpdatePage={(pageConf) =>
                 centralScheduler.updatePage({
                   ...pageConf,
-                  id: appConfig.selectedPageId as string,
+                  id: selectedPageId as string,
                 })
               }
             />

@@ -1,6 +1,8 @@
 {
+  "$id": "widget-config",
   "type": "object",
   "description": "组件配置数据",
+  "additionalProperties": false,
   "properties": {
     "data": {
       "type": "object",

@@ -1,5 +1,5 @@
-import { DeepPartial } from '@/interfaces/common';
 import merge from 'lodash-es/merge';
+import { DeepPartial } from '@/interfaces/common';
 
 export default class VWBWidgetConfiguration<
   Data extends object = {},

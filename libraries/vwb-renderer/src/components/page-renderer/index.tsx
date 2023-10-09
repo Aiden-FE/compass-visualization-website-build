@@ -1,16 +1,16 @@
-import { VWBLayoutItem, VWBPage, VWBWidget } from '@compass-aiden/vwb-core';
+import { pageValidate, VWBApplication, VWBLayoutItem, VWBPage, VWBWidget } from '@compass-aiden/vwb-core';
 import { Responsive, WidthProvider } from 'react-grid-layout';
 import 'react-grid-layout/css/styles.css';
 import 'react-resizable/css/styles.css';
-import { MouseEvent } from 'react';
+import { MouseEvent, useEffect } from 'react';
 import VWBWidgetRenderer from '@/components/widget-renderer';
-import { AppContext } from '@/hooks';
 
 export interface VWBPageRendererProps {
   pageConfig: VWBPage;
   className?: string;
   droppingItem?: { i: string; w: number; h: number };
   onDrop?: (layoutItem: VWBLayoutItem) => void;
+  mode?: VWBApplication['mode'];
   onSelect?: (params: { config: VWBPage | VWBWidget; ref: HTMLDivElement | null; event: MouseEvent }) => void;
 }
 
@@ -20,10 +20,16 @@ export default function VWBPageRenderer({
   onDrop,
   className,
   onSelect,
+  mode = 'preview',
 }: VWBPageRendererProps) {
-  const appContext = useContext(AppContext);
-  const isEditable = useMemo(() => appContext.appConfig.mode === 'editable', [appContext.appConfig]);
+  const isEditable = useMemo(() => mode === 'editable', [mode]);
   const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!pageValidate(pageConfig)) {
+      throw new Error('The acquired page data is not the expected data.');
+    }
+  }, [pageConfig]);
 
   // 布局项
   const gridItem = useMemo(() => {
@@ -37,12 +43,13 @@ export default function VWBPageRenderer({
         <div className="vwb-pr__grid-item" key={item.i}>
           <VWBWidgetRenderer
             widgetConfig={widgetConfig}
+            mode={mode}
             onSelect={isEditable ? (params) => onSelect?.(params) : undefined}
           />
         </div>
       ) : null;
     });
-  }, [pageConfig, isEditable, onSelect]);
+  }, [pageConfig, isEditable, onSelect, mode]);
 
   const ResponsiveGridLayout = useMemo(() => WidthProvider(Responsive), []);
 

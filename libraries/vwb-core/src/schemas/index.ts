@@ -7,20 +7,20 @@ import WidgetConfigSchema from './widget-config.schema.json';
 const ajv = new Ajv({
   useDefaults: true,
   coerceTypes: true,
+  strict: false,
+  removeAdditional: true,
 });
+
+ajv.addSchema([WidgetConfigSchema, WidgetSchema, PageSchema, ApplicationSchema]);
 
 // 验证应用数据
 export const applicationValidate = ajv.compile(ApplicationSchema);
-export const applicationValidateAsync = ajv.compileAsync(ApplicationSchema);
 
 // 验证页面数据
 export const pageValidate = ajv.compile(PageSchema);
-export const pageValidateAsync = ajv.compileAsync(PageSchema);
 
 // 验证组件数据
-export const WidgetValidate = ajv.compile(WidgetSchema);
-export const WidgetValidateAsync = ajv.compileAsync(WidgetSchema);
+export const widgetValidate = ajv.compile(WidgetSchema);
 
 // 验证组件配置数据
-export const WidgetConfigValidate = ajv.compile(WidgetConfigSchema);
-export const WidgetConfigValidateAsync = ajv.compileAsync(WidgetConfigSchema);
+export const widgetConfigValidate = ajv.compile(WidgetConfigSchema);

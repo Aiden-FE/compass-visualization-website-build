@@ -1,6 +1,8 @@
 {
+  "$id": "widget",
   "type": "object",
   "description": "组件数据",
+  "additionalProperties": false,
   "properties": {
     "id": {
       "type": "string",
@@ -53,15 +55,14 @@
             },
             "exportName": {
               "type": "string",
-              "nullable": true,
-              "default": "default"
+              "nullable": true
             }
           }
         }
       ]
     },
     "configuration": {
-      "$ref": "widget-config.schema.json"
+      "$ref": "widget-config"
     }
   }
 }

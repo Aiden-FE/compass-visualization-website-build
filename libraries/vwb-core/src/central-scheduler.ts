@@ -1,6 +1,7 @@
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { Logger } from '@compass-aiden/utils';
 import { ICentralSchedulerOption, DeepPartial, VWBApplication, VWBPage } from '@/interfaces';
+import { applicationValidate } from '@/schemas';
 
 /**
  * @description 应用调度中心
@@ -29,6 +30,9 @@ export default class AppCentralScheduler {
       logLevel: this.option.logLevel,
     });
     this.logger.debug('中央调度器准备就绪');
+    if (opt?.defaultAppConfig && !applicationValidate(opt.defaultAppConfig)) {
+      throw new Error('The acquired data is not the expected application data.');
+    }
     this.configSubject = new BehaviorSubject(opt?.defaultAppConfig || new VWBApplication());
     this.change = this.configSubject.asObservable();
   }
@@ -73,6 +77,9 @@ export default class AppCentralScheduler {
       ...opt,
     };
     const appConfig = this.configSubject.getValue();
+    if (appConfig.mode === 'preview') {
+      throw new Error('The preview mode prohibits the updating of data.');
+    }
     const index = this.getPageIndexById(pageConfig.id, appConfig);
     if (index === -1) {
       throw new Error('Not found target page');

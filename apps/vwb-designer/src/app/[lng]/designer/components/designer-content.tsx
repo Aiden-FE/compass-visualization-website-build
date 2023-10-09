@@ -1,20 +1,32 @@
 import { VWBApplication, VWBLayoutItem, VWBPage, VWBWidget } from '@compass-aiden/vwb-core';
 import { CommonComponentProps } from '@/interfaces';
-import { VWBAppRenderer } from '@compass-aiden/vwb-renderer';
+import { VWBAppRenderer, VWBAppRendererRef } from '@compass-aiden/vwb-renderer';
 import '@compass-aiden/vwb-renderer/dist/style.css';
 import { useAppSelector } from '@/stores';
+import { useRef } from 'react';
 import styles from './designer-content.module.scss';
 
 interface DesignerContentProps {
   appConfig: VWBApplication;
+  selectedPageId?: string;
+  setSelectPageId?: (id?: string) => void;
   onUpdatePage: (pageConfig: Partial<VWBPage>) => void;
 }
 
-function DesignerContent({ appConfig, onUpdatePage }: CommonComponentProps<DesignerContentProps>) {
+function DesignerContent({
+  appConfig,
+  onUpdatePage,
+  selectedPageId,
+  setSelectPageId,
+}: CommonComponentProps<DesignerContentProps>) {
   const defaultCreateLayoutItem = useAppSelector((state) => state.designer.defaultCreateLayoutItem);
+  const appRendererRef = useRef<VWBAppRendererRef>(null);
 
   function onDrop(item: VWBLayoutItem) {
-    const page = appConfig.pages.find((currentPage) => currentPage.id === appConfig.selectedPageId);
+    if (!appRendererRef.current) {
+      throw new Error('Not found instance of app renderer.');
+    }
+    const page = appRendererRef.current.getCurrentPageConfig();
     const layouts = page?.layouts || [];
     const layoutItem = new VWBLayoutItem({ ...item, i: undefined });
 
@@ -37,7 +49,10 @@ function DesignerContent({ appConfig, onUpdatePage }: CommonComponentProps<Desig
   return (
     <div className={`overflow-auto bg-[#f5f5f5] ${styles[`vwb-designer-content_${appConfig.platform}`]}`}>
       <VWBAppRenderer
+        ref={appRendererRef}
         appConfig={appConfig}
+        selectedPageId={selectedPageId}
+        setSelectPageId={setSelectPageId}
         pageProps={{
           droppingItem: defaultCreateLayoutItem?.layout,
           onDrop: (item) => onDrop(item),

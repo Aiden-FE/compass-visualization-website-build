@@ -1,6 +1,8 @@
 {
+  "$id": "application",
   "type": "object",
   "description": "应用配置数据",
+  "additionalProperties": false,
   "properties": {
     "id": {
       "type": "string",
@@ -33,7 +35,7 @@
       "type": "array",
       "description": "页面配置数据",
       "items": {
-        "$ref": "page.schema.json"
+        "$ref": "page"
       }
     }
   }

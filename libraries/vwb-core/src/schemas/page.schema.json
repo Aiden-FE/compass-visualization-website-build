@@ -1,6 +1,8 @@
 {
+  "$id": "page",
   "type": "object",
   "description": "页面配置数据",
+  "additionalProperties": false,
   "properties": {
     "id": {
       "type": "string",
@@ -38,7 +40,11 @@
       }
     },
     "widgets": {
-      "$ref": "widget.schema.json"
+      "type": "array",
+      "description": "所有组件配置数据",
+      "items": {
+        "$ref": "widget"
+      }
     }
   }
 }

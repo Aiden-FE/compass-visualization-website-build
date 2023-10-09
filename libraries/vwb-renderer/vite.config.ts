@@ -9,11 +9,13 @@ import dts from 'vite-plugin-dts';
 import path from 'node:path';
 import { builtinModules } from 'node:module';
 import { fileURLToPath, URL } from 'node:url';
+import nodePolyfills from 'vite-plugin-node-stdlib-browser';
 import pkg from './package.json';
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
+    nodePolyfills(),
     dts({
       outDir: 'types',
     }),
