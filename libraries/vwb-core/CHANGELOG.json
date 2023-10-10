@@ -1,0 +1,17 @@
+{
+  "name": "@compass-aiden/vwb-core",
+  "entries": [
+    {
+      "version": "0.1.1",
+      "tag": "@compass-aiden/vwb-core_v0.1.1",
+      "date": "Tue, 10 Oct 2023 01:56:49 GMT",
+      "comments": {
+        "none": [
+          {
+            "comment": "init"
+          }
+        ]
+      }
+    }
+  ]
+}
