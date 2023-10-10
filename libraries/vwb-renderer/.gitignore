@@ -150,7 +150,7 @@ node_modules
 dist-ssr
 *.local
 
-auto-imports.d.ts
+#auto-imports.d.ts
 #components.d.ts
 
 stats.html
