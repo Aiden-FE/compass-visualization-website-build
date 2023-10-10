@@ -15,30 +15,6 @@ const Materials: MaterialConfig[] = [
     },
     getDefaultConfig: (config?: DeepPartial<VWBTextWidgetConfiguration>) => new VWBTextWidgetConfiguration(config),
   },
-  {
-    material: {
-      type: 'react-component',
-      from: 'local',
-      componentName: 'Text2',
-    },
-    layout: {
-      w: 2,
-      h: 1,
-    },
-    getDefaultConfig: (config?: DeepPartial<VWBTextWidgetConfiguration>) => new VWBTextWidgetConfiguration(config),
-  },
-  {
-    material: {
-      type: 'react-component',
-      from: 'local',
-      componentName: 'Text3',
-    },
-    layout: {
-      w: 2,
-      h: 1,
-    },
-    getDefaultConfig: (config?: DeepPartial<VWBTextWidgetConfiguration>) => new VWBTextWidgetConfiguration(config),
-  },
 ];
 
 export default Materials;

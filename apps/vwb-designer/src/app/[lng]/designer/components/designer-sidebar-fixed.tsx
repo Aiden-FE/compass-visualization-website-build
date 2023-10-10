@@ -4,7 +4,9 @@ import DesignerSidebarMenus from './designer-sidebar-menus';
 import DesignerSidebarMaterials from './designer-sidebar-materials';
 
 // eslint-disable-next-line no-empty-pattern
-function DesignerSidebarFixed({}: CommonComponentProps<{
+function DesignerSidebarFixed({
+  lang,
+}: CommonComponentProps<{
   onToggleSidebarMode: () => void;
 }>) {
   return (
@@ -13,7 +15,7 @@ function DesignerSidebarFixed({}: CommonComponentProps<{
         <DesignerSidebarMenus />
       </div>
       <div>
-        <DesignerSidebarMaterials />
+        <DesignerSidebarMaterials lang={lang} />
       </div>
     </div>
   );

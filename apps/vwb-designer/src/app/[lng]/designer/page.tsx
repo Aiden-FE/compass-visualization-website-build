@@ -51,7 +51,7 @@ function DesignerPage({ params: { lng } }: CommonPageProps) {
         ) : null}
       </Layout.Header>
       <Layout.Content className="flex relative">
-        <DesignerSidebar />
+        <DesignerSidebar lang={lng} />
         <main className="flex-1 overflow-auto bg-slate-200 flex justify-center p-4">
           {centralScheduler && appConfig ? (
             <DesignerContent
@@ -67,7 +67,7 @@ function DesignerPage({ params: { lng } }: CommonPageProps) {
             />
           ) : null}
         </main>
-        <DesignerSettings />
+        <DesignerSettings lang={lng} />
       </Layout.Content>
     </Layout>
   );

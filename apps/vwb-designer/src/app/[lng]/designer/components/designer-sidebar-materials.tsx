@@ -21,7 +21,7 @@ function DesignerSidebarMaterials({ lang }: CommonComponentProps) {
 
   return (
     <>
-      <Card title="基础组件">
+      <Card title={t('Foundation components')}>
         {Materials.map((item) => (
           <Card.Grid
             className="cursor-pointer"
